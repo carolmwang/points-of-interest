@@ -11,4 +11,5 @@
 5. As a user, I want to update comments on posts.
 
 ## Wireframe
-<img width="404" alt="screen shot 2018-09-04 at 1 48 54 am" src="https://user-images.githubusercontent.com/34017121/45012350-b6dad880-afe4-11e8-953f-de63bbbe74ee.png">
+<img width="395" alt="screen shot 2018-09-04 at 10 00 00 am" src="https://user-images.githubusercontent.com/34017121/45036006-54f09200-b029-11e8-927f-8faf4712ba6b.png">
+
