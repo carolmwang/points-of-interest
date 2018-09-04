@@ -1,0 +1,875 @@
+data_id,name
+city:186,New York
+city:10713,Jersey City
+city:377,San Francisco
+city:366,Washington D.C.
+city:361,Los Angeles
+city:154767,Beverly Hills
+city:10891,Santa Monica
+city:10850,North Glendale
+city:10587,Arlington
+city:364,Chicago
+city:159285,West Hollywood
+city:4939,Anaheim
+city:320,Orlando
+city:10661,South Boston
+city:363,Boston
+city:362,Seattle
+city:311,Las Vegas
+city:10728,Coney Island
+city:10725,Bensonhurst
+city:414,Philadelphia
+city:10452,Miami Beach
+city:411051,Niagara Falls
+city:1719,Niagara Falls
+city:508,San Diego
+city:1602,Burbank
+city:3804,Grand Canyon West
+city:2968,San Juan
+city:1773,New Orleans
+city:151390,Pearl City
+city:151699,Aiea
+city:2550,Honolulu
+city:359,Miami
+city:3773,Monterey
+city:1461133,Malibu
+city:10887,Santa Barbara
+city:1845,Santa Barbara
+city:140578,Santa Barbara
+city:10810,East Los Angeles
+city:1801,Mountain View
+city:1806,Oakland
+city:1816,Portland
+city:10890,Santa Cruz
+city:1623,Colorado Springs
+city:10710,Elizabeth
+city:1839,San Antonio
+city:151503,Kailua
+city:1207612,Manhattan Beach
+city:10441,Fountainebleau
+city:10472,Tamiami
+city:1751,Tampa
+city:4937,Newark
+city:4069,Bar Harbor
+city:1595,Nashville
+city:1858,St. Louis
+city:1855,San Luis
+city:1661,Fort Lauderdale
+city:360,Atlanta
+city:1754,Memphis
+city:1844,Savannah
+city:10551,New South Memphis
+city:10832,Huntington Beach
+city:10470,Sunrise
+city:1603,Baltimore
+city:1649,Houston
+city:4934,Napa
+city:367,Denver
+city:1853,Salt Lake City
+city:10835,Inglewood
+city:4446,Flagstaff
+city:10849,Newport Beach
+city:418,Dallas
+city:2549,Kaneohe Bay
+city:397,Austin
+city:1617,Cleveland
+city:1827,Palm Springs
+city:10662,South Peabody
+city:1812,Everett
+city:10786,Buena Park
+city:10870,Redondo Beach
+city:10809,Downey
+city:255917,Naples
+city:10884,San Pedro
+city:1563,Atlantic City
+city:1800,Oceana
+city:1250765,Alexandria
+city:1871,Kendall-Tamiami
+city:1820,Pittsburgh
+city:10520,Asheville
+city:4528,New Haven
+city:10856,Palo Alto
+city:10854,Orange
+city:292627,Newport
+city:3902,San Luis Obispo
+city:154144,Rancho Palos Verdes
+city:1679938,R�_o Piedras
+city:2553,Kahului
+city:10433,Clearwater
+city:3502,Daytona Beach
+city:10784,Berkeley
+city:10894,South Gate
+city:10979,Florence-Graham
+city:10933,Henderson
+city:4931,Portland
+city:151428,Kaneohe
+city:2557,Hilo
+city:3885,Charleston
+city:1717,Hollywood
+city:1771,Minneapolis
+city:10528,Camden
+city:1850,San Jos̩
+city:2552,Lahaina-Kapalua
+city:10858,Pasadena
+city:1750,Sacramento
+city:1601,Buffalo
+city:1560,Albuquerque
+city:195061,Mitchell
+city:1752,Kansas City
+city:365,Phoenix
+city:3536,Sioux Falls
+city:140240,Lahaina
+city:4292,Cody
+city:301,Anchorage
+city:4755,St. George
+city:493,Detroit
+city:1909,Juneau
+city:150312,Waipahu
+city:10775,Tempe Junction
+city:1673,Fort Worth
+city:10888,Santa Clara
+city:1852,Sandusky
+city:10553,Arlington
+city:1843,Santa Fe
+city:151962,Kailua-Kona
+city:2971,Ponce
+city:1790,Miramar
+city:3473,Martha's Vineyard
+city:233953,Columbus
+city:1620,Columbus
+city:1760,Milwaukee
+city:1608,Colombus
+city:1587,Mobile
+city:1836,Richmond
+city:10460,Pine Hills
+city:1830,Providence
+city:10776,Alameda
+city:1840,Reno
+city:1819,Saint Petersburg
+city:10908,Vallejo
+city:10772,Scottsdale
+city:1768,Montpelier
+city:1867,Tacoma
+city:1745,Louisville
+city:1854,Santa Ana
+city:1780,Myrtle Beach
+city:9661,Caguas
+city:1809,Oklahoma City
+city:10822,Garden Grove
+city:1833,Rapid City
+city:1911,Ketchikan
+city:10454,North Miami
+city:1167074,Gilroy
+city:10453,Miramar
+city:10937,Spring Valley
+city:1644,Durango
+city:10451,Margate
+city:10434,Coconut Creek
+city:1807,Omaha
+city:10445,Kendall
+city:401,Jacksonville
+city:3789,Springfield
+city:282131,Raleigh
+city:156055,Fairfield
+city:1835,Raleigh-Durham
+city:10878,San Bernardino
+city:10909,Ventura
+city:1696,Hartford
+city:304,Fort Myers
+city:1629,Cincinnati
+city:1811,Ontario
+city:10496,Metairie
+city:1600,Burlington
+city:10774,Tempe
+city:1803,Twenty Nine Palms
+city:10756,Oshkosh
+city:10875,Rosemead
+city:10625,Hoffman Estates
+city:10524,Durham
+city:1723,Indianapolis
+city:10949,Bend
+city:86827,San Gabriel
+city:3538,Springfield
+city:10468,Sarasota
+city:10648,Fall River
+city:10721,Trenton
+city:1879,Victorville
+city:1641,Dover
+city:1627,Corpus Christi
+city:1872,Trenton
+city:10462,Pompano Beach
+city:10790,Carson
+city:1842,Roswell
+city:10624,Evanston
+city:10940,Boulder
+city:10820,Fremont
+city:10922,Broomfield
+city:10432,Carol City
+city:10803,Costa Mesa
+city:1742,Little Rock
+city:1770,Madison
+city:10795,Chula Vista
+city:10513,Independence
+city:2554,Kona
+city:11231,Keystone
+city:10475,Town 'n' Country
+city:225043,Canton
+city:151650,Kapolei
+city:1633,Cheyenne
+city:10934,North Las Vegas
+city:10869,Redlands
+city:1640,Tucson
+city:1683,Green Bay
+city:1826,Prescott
+city:10618,Aurora
+city:1586,Bakersfield
+city:1619,Charlotte
+city:1701,Helena
+city:1626,Casper
+city:3795,Wilmington
+city:10739,West Albany
+city:10958,Sandy City
+city:1569,Albany
+city:1883,White Sands
+city:1744,Lincoln
+city:10591,East Hampton
+city:172201,Hutchinson
+city:10873,Richmond
+city:3476,Sarasota Bradenton
+city:10701,Saint Paul
+city:1873,Tulsa
+city:10953,Salem
+city:10781,Arcadia
+city:3496,Bozeman
+city:1596,Boise
+city:4936,Concord
+city:1870,Tallahassee
+city:1324298,Kansas City
+city:1734,Lansing
+city:10877,Salinas
+city:3506,Eugene
+city:1779,Montgomery
+city:3492,Billings
+city:1686,Grand Rapids
+city:1562,Waco
+city:1817,Newport News
+city:10507,Silver Spring
+city:10464,Port Orange
+city:303,Fairbanks
+city:1615,Charleston
+city:1727,Winston-Salem
+city:1886,Yuma
+city:10900,Torrance
+city:10668,Ann Arbor
+city:4137,Block Island
+city:1863,Syracuse
+city:1101091,Rochester
+region:23691,Frederiksted
+city:11267,Annapolis
+city:10735,Rochester
+city:156256,La Ca̱ada Flintridge
+city:11185,Rochester
+city:10449,Lauderhill
+city:10898,Temecula
+city:4935,Jackson
+city:10826,Hacienda Heights
+city:10628,Naperville
+city:1206954,Cerritos
+city:2555,Kamuela
+city:1657,Fort Eustis
+city:10436,Davie
+city:10443,Jupiter
+city:1581,Boca Raton
+city:1645,Des Moines
+city:3522,Missoula
+city:3529,Pierre
+city:10941,Fort Collins
+city:10663,Springfield
+city:1933,Oliktok Point
+city:10821,Fullerton
+city:10824,Glendale
+city:10931,Carson City
+city:10938,Sunrise Manor
+city:2548,Dillingham
+city:3911,Eureka
+city:10543,North Charleston
+city:1206950,Westminster
+city:1590,El Paso
+city:10476,Wellington
+city:1559,Abilene
+city:10770,Mesa
+city:1920,Sitka
+city:3532,Roanoke
+city:10667,Worcester
+city:10602,East Norwalk
+city:11239,Vail
+city:1691,Greenville
+city:1769,Marquette
+city:10917,Yorba Linda
+city:10653,Lowell
+city:10715,New Brunswick
+city:3497,Butte
+city:10727,Cheektowaga
+city:3493,Binghamton
+city:10709,Edison
+city:3511,Greensboro
+city:10447,Lakeland
+city:3662,Petersburg
+city:10956,Millcreek
+city:10751,Cranston
+city:10801,Concord
+city:1689,Great Falls
+city:1902,Fort Wainwright
+city:10865,Pomona
+city:10771,Peoria
+city:10976,Alafaya
+city:3549,Grand Junction
+city:2969,Mayag�_ez
+city:295254,East Providence
+city:10521,Cary
+city:10928,Westminster
+city:4759,Christiansted
+city:206503,Birmingham
+city:3764,Jackson
+city:10740,Yonkers
+city:1749,Midland
+city:10896,South Whittier
+city:211046,Wausau
+city:1660,Fort Huachuca
+city:3552,Rockford
+city:1568,Akron
+city:1625,Columbia
+city:1658,Fresno
+city:10899,Thousand Oaks
+city:10764,Catalina Foothills
+city:10738,Utica
+city:10435,Coral Springs
+city:10557,Denton
+city:221127,Sheboygan
+city:157248,Santa Fe Springs
+city:1831,Riverside
+city:10737,Troy
+city:1756,McAllen
+city:1718,Wichita
+city:10883,San Mateo
+city:10915,Whittier
+city:4637,Oxnard
+city:1794,Pensacola
+city:1735,Lubbock
+city:10853,Oceanside
+city:10473,The Hammocks
+city:10440,East Pensacola Heights
+city:1606,Columbia
+city:1762,Melbourne
+city:2558,Molokai
+city:1682,Gainesville
+city:3884,Provo
+city:153202,Coeur d'Alene
+city:10431,Cape Coral
+city:10762,Buckeye
+city:1208400,Monrovia
+city:2559,Lanai
+city:1598,Brownsville
+region:23400,Harrisonburg
+city:1207541,Irvine
+city:1588,Bangor
+city:10577,Plano
+city:1206968,El Segundo
+city:10981,Enchanted Hills
+city:10514,Lee's Summit
+city:2546,Barking Sands
+city:2011101,Warren
+city:10457,Palm Bay
+city:1589,Birmingham - Jefferson County
+city:1593,Bellingham
+city:261468,Columbia
+city:10428,Springdale
+city:252007,Augusta
+city:10836,Irvine
+city:151836,Lewiston
+city:10978,Arden-Arcade
+city:10893,Simi Valley
+city:10925,Lakewood
+city:10838,Lynwood
+city:10872,Rialto
+city:10767,Glendale
+city:10729,Greenburgh
+city:10687,Waterford
+city:10569,Mesquite
+city:10581,Rowlett
+city:10580,Round Rock
+city:10593,Portsmouth Heights
+city:10549,Johnson City
+city:10531,South Vineland
+city:10579,Richardson
+city:10562,Garland
+city:10564,Irving
+city:10519,West Gulfport
+city:10502,Frederick
+city:10493,Bossier City
+city:10489,Overland Park
+city:10517,Saint Joseph
+city:10442,Hialeah
+city:3600,Riverton
+city:3598,North Platte
+city:3547,Yakima
+city:3503,Eau Claire
+city:1732,Jackson
+city:1697,Hawthorne
+city:1671,Fort Smith
+city:1678,Grand Forks
+city:1738,Lufkin
+city:1597,Beaumont
+city:1653,Enid
+city:1611,Chicopee Falls
+city:3519,Manchester - Hillsborough County
+city:2022617,St. Ignace
+city:2017573,DeLand
+city:2016184,Marina
+city:2014796,Greenville
+city:10726,Brentwood
+city:1567,Bush Field
+city:3611,Aspen
+city:1614,Chattanooga
+city:1712,Houghton Lake
+city:246457,Bradenton
+city:1577,Watertown
+city:158908,Aberdeen
+city:1578,Augusta
+city:10465,Port St. Lucie
+city:238343,Ashland
+city:10612,Ames
+city:197525,Weslaco
+city:3951,Anaktuvuk
+city:1730,Williston
+city:807470,Richland
+city:293294,Woonsocket
+city:1851,San Angelo
+city:10828,Hayward
+city:1846,Salisbury
+city:241319,Winter Haven
+city:3660,Redding
+city:1736,Lake Charles
+city:3548,Fort Collins/Loveland
+city:1746,Laredo
+city:10844,Montebello
+city:1804,Willow Grove
+city:1793,Port Angeles
+city:4170,Lebanon
+city:10918,Yuba City
+city:10926,Pueblo
+city:1767,Modesto
+city:10566,Lewisville
+city:1868558,Oneonta
+city:1677,Spokane
+city:1786,Patuxent River
+city:10763,Casas Adobes
+city:1758,Minot
+city:1639,Duluth
+city:1566,Alexandria
+city:276307,Hopewell
+city:3601,Rock Springs
+city:3542,Traverse City
+city:134005,Poughkeepsie
+city:1662,Florence
+city:4728,Pocatello
+city:283407,Burlington
+city:3756,Fayetteville
+city:4338,Lawton
+city:10773,Surprise
+city:3555,Huntington
+city:159124,Poway
+city:182862,Lebanon
+city:224387,Kingsport
+city:182965,Brookings
+city:10497,Bethesda
+city:1821,Palmdale
+city:10779,Antioch
+city:174788,Texarkana
+city:191082,Jefferson City
+city:3486,Aberdeen
+city:1634,Dayton
+city:3792,Victoria
+city:3528,Peoria
+city:10843,Mission Viejo
+city:10526,High Point
+city:1875,Tyler
+city:3752,Columbus
+city:10456,Ocala
+city:10747,Bethlehem
+city:10912,Watsonville
+city:10732,Levittown
+city:10541,Norman
+city:200062,Atchison
+city:10765,Chandler
+city:10626,Joliet
+city:199073,Spearfish
+city:247375,Frankfort
+city:3546,Wenatchee
+city:10538,Edmond
+city:10939,Odessa
+city:10777,Alhambra
+city:10753,Janesville
+city:172360,Yankton
+city:169339,West Fargo
+city:10719,Paterson
+city:10550,Murfreesboro
+city:10615,Iowa City
+city:10913,West Covina
+city:4951,Fond du Lac
+city:297447,Manchester
+city:3793,Waterloo
+city:165661,Hastings
+city:10783,Bellflower
+city:164324,Columbus
+city:3507,Evansville
+city:10819,Fountain Valley
+city:3526,Pasco
+city:10815,Escondido
+city:10752,Warwick
+city:10558,Edinburg
+city:255677,Venice
+city:151425,Brea
+city:10863,Placentia
+city:295120,Auburn
+city:10793,Chino
+city:10598,Auburn
+city:1829489,La Quinta
+city:1667,Topeka
+city:10834,Indio
+city:1591,Biloxi
+city:1753,Macon
+city:1878,Lompoc
+city:1869,Teterboro
+city:1759,Millville
+city:3588,Dickinson
+city:3494,Bismarck
+city:10645,Brockton
+city:235795,Hialeah
+city:1616,Chico
+city:3488,Appleton
+city:10608,Stamford
+city:10705,Nashua
+city:3514,Huntsville
+city:10546,Clarksville
+city:3590,Gillette
+city:3495,Bloomington
+city:169902,Mandan
+city:3658,Lewiston
+city:3557,Grand Island
+city:1699,Ogden
+city:1638,Del Rio
+city:220659,Peru
+city:1580,Shreveport
+city:10974,Vancouver
+city:3781,Rochester
+city:199396,Port Aransas
+city:3594,Laramie
+city:10630,North Peoria
+city:10755,North La Crosse
+city:3569,Hagerstown
+city:1665,Farmington
+city:1722,Wilmington
+city:3515,Kalamazoo
+city:3706,Twin Falls
+city:207320,Florence
+city:10736,Schenectady
+city:10966,Kennewick
+city:10800,Compton
+city:3593,Kearney
+city:3541,Toledo
+city:10845,Monterey Park
+city:10868,Rancho Cucamonga
+city:1888359,Idaho Falls
+city:3584,Alamosa
+city:10448,Largo
+city:166825,Lafayette
+city:157502,Moscow
+city:4390,Escanaba
+city:3604,Sheridan
+city:3618,Santa Maria
+city:268752,College Park
+city:214958,Houghton
+city:2016179,Seaside
+city:193062,Vermillion
+city:10670,Canton
+city:221441,Rushville
+city:227052,Morristown
+city:140079,Lebanon
+city:3517,La Crosse
+region:215885,Enterprise
+city:10596,South Suffolk
+city:4028,Cambria County
+city:1670,Fort Sill
+city:10920,Arvada
+city:10802,Corona
+city:10571,Missouri City
+city:10423,Tuscaloosa
+city:10717,Parsippany
+city:3717,Steamboat Springs
+city:1847,Stockton
+city:2028809,Seaford
+city:211898,Oxford
+city:154883,Shelby
+city:10533,Vineland
+city:10862,Pittsburg
+city:10461,Poinciana
+city:2542,Saipan
+city:218435,Gadsden
+city:4079,Pittston Township
+city:157428,Lancaster
+city:154606,Paso Robles
+city:4564,Joplin
+city:4457,Hattiesburg
+city:4444,Westsound
+city:4335,Mc Cook
+city:10861,Pico Rivera
+city:10897,Sunnyvale
+city:10823,Gardena
+city:10754,Kenosha
+city:10682,Saint Clair Shores
+city:10597,West Lynchburg
+city:10458,Palm Coast
+city:10488,Olathe
+city:4054,Lynchburg
+city:10650,Framingham Center
+city:10607,North Stamford
+city:10924,Highlands Ranch
+city:10430,Brandon
+city:10492,Lexington-Fayette
+city:1877,Valdosta
+city:1876,Knoxville
+city:1860,Sioux City
+city:1861,Hunter Aaf
+city:1810,Nogales
+city:1747,Fort Benning
+city:1789,Cherry Point
+city:1741,Wright
+city:1713,Redstone
+city:1733,Jonesboro
+city:1685,Killeen
+city:1599,Baton Rouge
+city:1705,Huron
+city:3883,Stillwater
+city:3603,Scottsbluff
+city:3518,Lexington
+city:3512,Gulfport
+city:3510,Fort Wayne
+city:3508,Fargo
+city:3534,Saint Cloud
+city:3525,Paducah
+city:3499,Cedar Rapids
+city:3544,Tupelo
+city:3521,Medford
+city:1636,Dothan
+city:4884,Brooks Lodge
+city:10671,Clinton
+city:472,Santa Rosa
+city:2544,Agana
+city:10789,Carmichael
+city:1494957,Olympia
+city:4193,Lancaster
+city:10560,Flower Mound
+city:10487,Lawrence
+city:1349805,Palm Desert
+city:162583,Lakewood
+city:1207564,Covina
+city:294921,Trenton
+city:288509,Central Falls
+city:1238068,Moca
+city:1628,Cutbank
+city:151935,Palos Verdes Estates
+city:162015,Rolling Hills Estates
+city:3788,Pawtucket
+city:153632,Cut Bank
+city:10846,Moreno Valley
+city:10614,Davenport
+city:1694,Harrisburg
+city:180412,San Juan
+city:152417,Choteau
+city:1837,Rancho Murieta
+city:1829,Pueblo Memorial
+city:1672,Fort Knox
+city:1650,Eagle Pass
+city:1156506,Foster City
+city:10980,San Tan Valley
+city:10686,Warren
+city:10623,Elgin
+city:3505,Erie
+city:3537,South Bend
+region:174716,Cedar Hill
+city:151723,Mililani
+city:10851,Norwalk
+city:10459,Palm Harbor
+city:10444,Kendale Lakes
+city:1915,Nome
+city:1716,Havre
+city:3869,Orcas Island
+city:3579,Punta Gorda
+city:1574,Altoona
+city:2541,Rota
+city:2545,West Tinian
+city:2020928,Cayce
+city:1239391,Arecibo
+city:1208397,Azusa
+city:421901,Seneca
+city:10511,East Independence
+city:2021384,Vacaville
+city:2020411,Russellville
+city:10857,Paramount
+city:3737,Anderson
+city:1815,Plattsburgh
+city:10818,Fontana
+city:10532,Toms River
+city:1917,Kotzebue
+city:10760,Bridgeport
+city:212024,La Salle
+city:10847,Murrieta
+city:154275,La Habra Heights
+city:4330,Dubuque
+city:10889,Santa Clarita
+city:10455,North Port
+city:168048,Portland
+city:438502,Tolleson
+city:170579,Donna
+city:10508,Towson
+city:275009,Wilkes-Barre
+city:3509,Flint
+city:173742,Brandon
+city:89215,Clemson
+city:10749,Reading
+city:10609,Waterbury
+city:3485,Allentown
+city:119961,Spartanburg
+city:266743,Bel Air
+city:201666,LaGrange
+city:153788,Apache Junction
+city:118709,York
+city:3530,Pullman
+city:161862,Litchfield Park
+city:1607,Caribou
+city:9662,Carolina
+city:288913,Waterville
+city:10794,Chino Hills
+city:231541,LaBelle
+city:293321,Huntington
+city:1823407,Ansonia
+city:1674,Fayetteville
+city:10537,Broken Arrow
+city:10812,El Monte
+city:10831,Highland
+city:4718,Visalia
+city:159711,Calimesa
+city:10439,Deltona
+city:1206964,La Mirada
+city:1892,Barrow
+city:1749928,Box Elder
+region:234744,Jefferson City
+region:2010602,West Melbourne
+city:1153528,Soledad
+city:183010,Roundup
+city:1824,Fort Polk
+city:1109680,Jurupa Valley
+city:10477,Weston
+city:156223,El Mirage
+city:1659,Fort Carson
+city:1864,Knobnoster
+city:1669,Fort Riley
+city:1648,Edwards Afb
+city:1775,Muir
+city:10841,Menifee
+city:1802,Whidbey Island
+city:1576,Louisiana
+city:10699,Minnetonka Mills
+city:1924237,San Tan Valley
+city:10471,Tamarac
+city:10855,Oxnard Shores
+city:10450,Lehigh Acres
+city:1668,West Hampton Beach
+city:153147,La Habra
+city:1881,Wallops Island
+city:10702,West Coon Rapids
+city:1109673,Eastvale
+city:148976,Ewa Beach
+city:10680,Shelby
+city:4578,Whale Pass
+city:1731,Islip
+city:1777,Grant County
+city:3941,Port Bailey
+city:10469,Spring Hill
+city:156082,Hazleton
+city:1865,Fort Leonardwood
+city:155668,Rolling Hills
+city:3937,Lazy Bay
+city:1798,Point Mugu
+city:1787,China Lake
+city:3861,Quadra Island
+city:157941,Villa Park
+region:61372,Poquoson City
+city:2564,Midway
+city:3936,Moser Bay
+city:1702,Fort Hood
+region:252755,Tusculum
+city:1605,Fort Irwin
+city:2024235,Caddo Mills
+city:4490,Grand Canyon
+city:1834,Red River
+city:2556,Bradshaw Field
+city:1721,Kirtland A.f.b.
+city:1914,Annette Island
+city:1923,Shemya
+city:4673,Nikolai
+city:4345,New Koliganek
+city:4343,Diomede Island
+city:4010,St. George Island
+city:4008,Saint Mary's
+city:1890,Bethel
+city:4114,Kongiganak
+city:3975,Coffee Point
+city:4430,Minto
+city:1893,Bettles
+city:3938,Zachar Bay
+city:3935,Olga Bay
+city:4323,Chisana
+city:3943,West Point
+city:4110,Scammon Bay
+city:3950,Allakaket
+city:3952,Hughes
+city:4016,Anvik
+city:3987,Ugashik Bay
+city:1907,Iliamna
+city:4281,Ekuk
+city:1927,Tatalina
+city:4021,Crooked Creek
+city:4577,Naukiti
+city:4024,Stony River
+city:4348,Togiak Village
+city:3931,Kitoi Bay
+city:3802,Blue Mountain
+city:3984,Chignik Lagoon
+city:3939,Amook Bay
+city:1922,Sparrevohn
+city:1921,St. Paul Island
+city:4844,Painter Creek
+city:3976,Big Creek
+city:2560,Johnston Island
+city:3978,Wildman Lake
+city:1912,Cape Lisburne
+city:4914,Minchumina
+city:4074,Kotlik
+city:3942,Uganik Island
+city:4434,Koyukuk
+city:1889,Barter Island
+city:1894,Cold Bay
+city:4440,Kauehi
+city:1900,Cape Newenham
+city:3988,Cinder River
+city:2543,Andersen
+city:1896,Adak Island
+city:2019557,Maywood Park
+city:3867,Kavik
+city:2029105,St. Clair
+city:4246,Nelson Lagoon
+city:2029219,Ecorse
+city:1908,Indian Mountains
+city:3932,Seal Bay
