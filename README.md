@@ -1,4 +1,4 @@
-# Where to Next?
+# Points of Interest
 
 ## ERD
 <img width="588" alt="screen shot 2018-09-04 at 1 49 59 am" src="https://user-images.githubusercontent.com/34017121/45012381-df62d280-afe4-11e8-8ab9-a517152f5cb3.png">
