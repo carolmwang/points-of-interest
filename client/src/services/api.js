@@ -1,5 +1,10 @@
 const BASE_URL = process.env.REACT_APP_API_URL
 
+export function fetchCities() {
+  return fetch(`${BASE_URL}/cities`)
+  .then(resp => resp.json())
+}
+
 export function fetchPOI(id) {
   const opts = {
     headers: {
@@ -9,6 +14,7 @@ export function fetchPOI(id) {
   return fetch(`https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${id}&levels=poi&limit=1024&categories=discovering`, opts)
   .then(resp => resp.json())
 }
+
 
 // get all posts by one user
 export function getAllUserPosts(id) {
@@ -28,3 +34,8 @@ export function getOneUserPost(user_id, id) {
   .then(resp => resp.json())
 }
 
+// new post
+export function createPost(city_id, init) {
+  return fetch(`${BASE_URL}/cities/${city_id}/posts`, init)
+  .then(resp => resp.json)
+}

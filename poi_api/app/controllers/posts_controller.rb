@@ -51,12 +51,13 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
-
+    
     def post_params
       params
       .require(:data)
+      .require(:attributes)
       .permit(
-        :content, :poi_id, :city_id, :user_id
+        :content, :poi_id, :city_id, :current_user.id
         )
     end
 end
