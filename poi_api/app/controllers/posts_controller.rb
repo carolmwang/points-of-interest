@@ -14,15 +14,15 @@ class PostsController < ApplicationController
   end
 
   # GET /users/:user_id/posts/:id
-  # GET /cities/:id
   def show
+    @post = Post.find(params[:id])
     render json: @post
   end
 
   # POST /cities/:city_id/posts
   def create
     @new_post = Post.new(post_params)
-    
+
     if @new_post.save
       render json: { post: @new_post, status: :created, location: @new_post }
     else
