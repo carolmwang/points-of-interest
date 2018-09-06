@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_175346) do
+ActiveRecord::Schema.define(version: 2018_09_05_182731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,29 @@ ActiveRecord::Schema.define(version: 2018_09_04_175346) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.string "poi_id"
+    t.bigint "city_id"
+    t.bigint "user_id"
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_posts_on_city_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "username", limit: 30
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "admin", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  add_foreign_key "posts", "cities"
+  add_foreign_key "posts", "users"
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  created_at: 2018-09-05 14:27:31
+  poi_id: MyString
+  user: one
+
+two:
+  content: MyString
+  created_at: 2018-09-05 14:27:31
+  poi_id: MyString
+  user: two
