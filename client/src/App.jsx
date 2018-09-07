@@ -62,6 +62,7 @@ class App extends Component {
     this.register = this.register.bind(this)
     this.login = this.login.bind(this)
     this.randomCity = this.randomCity.bind(this)
+    this.poiCity = this.poiCity.bind(this)
   }
 
   // AUTH Functions 
@@ -142,7 +143,7 @@ class App extends Component {
     fetchCities()
       .then(data => this.setState({ cities: data.cities }))
     fetchPOI(this.state.city_id)
-      .then(data => this.setState({ poi: data }))
+      .then(data => this.setState({ poi: data.data.places }))
   }
   //renders to the homepage (for logo)
   renderToHomePage() {
@@ -152,24 +153,15 @@ class App extends Component {
   }
 
   // handles the random city view after user clicks the button from the HomePage
- randomCity(random_city) {
-    async function poiCity() {
-    let data = await(
-      await(fetchPOI(random_city))).json();
-      console.log(data)
-    }
-    console.log(poiCity());
-    // await fetchPOI(random_city.city_id)
-    //   .then(data => console.log(data))
-      // .then(data => {
-      //   this.setState({
-      //     poi: data.data.places,
-      //     city: random_city,
-      //     city_id: random_city.data_id,
-      //     currentView: `City`
-      //   })
-      // })
+  randomCity(random_city) {
+    this.setState({
+      city: random_city,
+      city_id: random_city.data_id,
+      currentView: `City`
+    })
   }
+
+
   // randomCity(random_city) {
   //   async function poiCity() {
   //   let data = await(
@@ -191,7 +183,7 @@ class App extends Component {
 
   // shows all POI for the chosen city
   poiCity() {
-    fetchPOI(this.state.city_id)
+    fetchPOI()
       .then(data => {
         this.setState({
           poi: data.data.places
@@ -233,7 +225,9 @@ class App extends Component {
       //   />
 
       case 'City':
-        return <City />
+        return <City 
+        city_id={city_id}
+        />
 
       case 'Login':
         return <Login handleChange={this.handleChange}
