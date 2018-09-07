@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { fetchPOI } from '../services/api';
+import CategoryPOI from './CategoryPOI'
+
 
 class City extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class City extends Component {
       .then(data =>
         this.setState({
           poi: data.data.places,
-          poiCity: data.data.places[0].name_suffix,
+          poiCity: data.data.places[0] ? data.data.places[0].name_suffix : "Nothing to do here..",
         }))
   }
 
@@ -28,7 +30,11 @@ class City extends Component {
     this.setState({
       category: ev.target.value
     })
-    .then(fetchPOI(this.state.city_id, this.state.category))
+    fetchPOI(this.state.city_id, this.state.category)
+      .then(data =>
+        this.setState({
+          poi: data.data.places,
+        }))
   }
 
   render() {
@@ -37,41 +43,16 @@ class City extends Component {
         <nav>
           {
             this.state.categories.map(category => {
-              return(
-              <button value={category} onClick={this.handleCategoryClick}>{category}</button>
+              return (
+                <button value={category} onClick={this.handleCategoryClick}>{category}</button>
               )
             })
           }
         </nav>
 
-      <h3>{this.state.poiCity}</h3>
-      
-        {
-          this.state.poi.map(data => {
-            console.log(data)
-            const rating = Math.round(data.rating);
-            console.log(rating)
-            const localRating = Math.round(data.rating_local);
-            console.log(localRating)
-            const categories = data.categories;
-            console.log(categories)
-            return (
-              <div key={data.id}>
-                <h4>{data.name}</h4>
-                <img src={data.thumbnail_url} alt={`Sorry, no image of ${data.name}`}></img>
-                <p>{data.perex}</p>
-                <a href={data.url}>More Information</a>
-                <p>Rating: {rating}/5</p>
-                <p>Local Rating: {localRating}/5</p>
-                {
-                  categories.map(category => {
-                    <span>{category}</span>
-                  })
-                }
-              </div>
-            )
-          })
-        }
+        <h3>{this.state.poiCity}</h3>
+        <CategoryPOI poi={this.state.poi}/>
+
         <div></div>
       </div>
     )
