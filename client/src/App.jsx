@@ -1,235 +1,21 @@
 import React, { Component } from 'react';
-import Login from './components/Login';
-const BASE_URL = 'http://localhost:3000';
-
-
-class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      email: '',
-      password:'',
-      isLoggedIn: null,
-      name: '',
-      sugar:'',
-      isEdit:false,
-      selectedJuiceId:null,
-      isRegister: false,
-    };
-    // this.getJuices = this.getJuices.bind(this)
-    this.logout = this.logout.bind(this)
-    this.login = this.login.bind(this)
-    this.isLoggedIn = this.isLoggedIn.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    // this.delete = this.delete.bind(this)
-    // this.submitNew = this.submitNew.bind(this)
-    // this.edit = this.edit.bind(this)
-    // this.showEditForm = this.showEditForm.bind(this)
-    this.cancel = this.cancel.bind(this)
-    this.register = this.register.bind(this)
-    this.showRegisterForm = this.showRegisterForm.bind(this)
-  }
-
-  cancel() {
-    this.setState({
-      name:'',
-      sugar:'',
-      isEdit:false,
-      selectedJuiceId:null,
-    })
-  }
-  
-  showRegisterForm() {
-    this.setState({
-      isRegister: true,
-    })
-  }
-
-  register() {
-    const url = `${BASE_URL}/users`
-    const body = {"user": {"email": this.state.email, "password":this.state.password}}
-    const init = { method: 'POST',
-                   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                   mode: 'cors',
-                   body:JSON.stringify(body)
-                 }
-    fetch(url, init)
-    .then(res => res.json())
-    .then(this.setState({
-      isRegister: false,
-    }))
-    .catch(err => err.message)
-  }
-  login() {
-    const url = `${BASE_URL}/user_token`;
-    const body = {"auth": {"email": this.state.email, "password": this.state.password} }
-    const init = { method: 'POST',
-                   headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-                   mode: 'cors',
-                   body:JSON.stringify(body),
-                   }
-    fetch(url, init)
-    .then(res => res.json())
-    .then(res => localStorage.setItem("jwt", res.jwt))
-    .then(() => this.setState({
-      isLoggedIn: true,
-    }))
-    .then(() => console.log('IT WORKED'))
-    .catch(err => console.log(err))
-  }
-
-  // showEditForm(id) {
-  //   const juice = this.state.juices.filter(juice => juice.id === id);
-  //   this.setState({
-  //     name: juice[0].name,
-  //     sugar: juice[0].sugar,
-  //     isEdit: true,
-  //     selectedJuiceId: juice[0].id
-  //   })
-  // }
-
-  // edit(id) {
-  //   const jwt = localStorage.getItem("jwt")
-  //   const body = {"juice": {"name": this.state.name, "sugar": this.state.sugar} }
-  //   const init = {
-  //     headers: {"Authorization": `Bearer ${jwt}`,'Content-Type': 'application/json', 'Accept': 'application/json'},
-  //     method: 'PUT',
-  //     mode: 'cors',
-  //     body: JSON.stringify(body)
-  //   }
-  //   fetch(`${BASE_URL}/juices/${id}`, init)
-  //   .then(() => this.getJuices())
-  //   .then(this.setState({
-  //     name:'',
-  //     sugar:'',
-  //     isEdit:false,
-  //     selectedJuiceId:null,
-  //   }))
-  //   .catch(err => err.message)
-
-  // }
-
-  // submitNew() {
-  //   const jwt = localStorage.getItem("jwt")
-  //   const body = {"juice": {"name": this.state.name, "sugar": this.state.sugar} }
-  //   const init = {
-  //     headers: {"Authorization": `Bearer ${jwt}`,'Content-Type': 'application/json', 'Accept': 'application/json'},
-  //     method: 'POST',
-  //     mode: 'cors',
-  //     body: JSON.stringify(body)
-  //   }
-  //   fetch(`${BASE_URL}/juices`, init)
-  //   .then(() => this.getJuices())
-  //   .catch(err => err.message)
-  // }
-
-  // delete(id) {
-  //   const jwt = localStorage.getItem("jwt")
-  //   const init = { 
-  //     headers: {"Authorization": `Bearer ${jwt}`},
-  //     method: 'DELETE',
-  //     mode: 'cors',
-  //   }
-  //   fetch(`${BASE_URL}/juices/${id}`, init)
-  //   .then(()=> this.getJuices())
-  //   .catch(err => err.message)
-  // }
-
-  isLoggedIn() {
-    const res = !!(localStorage.getItem("jwt"));
-    this.setState({
-      isLoggedIn: res,
-    })
-    return res;
-  }
-
-  // getJuices() {
-  //   const jwt = localStorage.getItem("jwt")
-  //   const init = { 
-  //     headers: {"Authorization": `Bearer ${jwt}`}
-  //   }
-  //   fetch(`${BASE_URL}/juices`, init)
-  //   .then(res => res.json())
-  //   .then(data => this.setState({
-  //     juices: data,
-  //   }))
-  //   .catch(err => err)
-  // }
- 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]:e.target.value
-    })
-  }
-
-  logout() {
-    localStorage.removeItem("jwt")
-    this.setState({
-     isLoggedIn: false,
-     juices: [],
-     name:"",
-     email:"",
-    })
-  }
-
-  
-
-  // componentDidMount() {
-  //   this.isLoggedIn()
-  //   this.getJuices()
-  // }
-
-  render() {
-   return (<Login handleChange={this.handleChange}
-                 login={this.login}
-                 logout={this.logout}
-                 email={this.state.email}
-                 password={this.state.password}
-                 isRegister={this.state.isRegister}
-                 register={this.register}
-                 />)
-    // return (
-    //   <div className="App">
-    //     <Header 
-    //     logout={this.logout} 
-    //     create={this.create}
-    //     showRegisterForm={this.showRegisterForm}
-    //     />
-    //     <div> {display} </div>
-    //     <JuiceForm 
-    //     handleChange={this.handleChange} 
-    //     submitNew={this.submitNew} 
-    //     name={this.state.name}
-    //     sugar={this.state.sugar}
-    //     isEdit={this.state.isEdit}
-    //     id={this.state.selectedJuiceId}
-    //     edit={this.edit}
-    //     cancel={this.cancel}
-    //     />
-    //   </div>
-    // );
-  }
+import {
+  fetchCities,
+  getAllUserPosts,
+  getAllCityPosts,
+  getOneUserPost,
+  fetchPOI,
+  createPost,
 }
+  from './services/api';
 
-export default App;
-// import React, { Component } from 'react';
-// import {
-//   fetchCities,
-//   getAllUserPosts,
-//   getAllCityPosts,
-//   getOneUserPost,
-//   fetchPOI,
-//   createPost,
+import Header from './components/Header';
+import HomePage from './components/HomePage';
+import Login from './components/Login';
+// import NewPost from './components/NewPost';
+import City from './components/City';
 
-// } from './services/api';
-
-// import Header from './components/Header';
-// import HomePage from './components/HomePage';
-// import Login from './components/Login';
-// // import NewPost from './components/NewPost';
-
-// const BASE_URL = process.env.REACT_APP_API_URL
+const BASE_URL = process.env.REACT_APP_API_URL
 
 // fetchCities()
 //   .then(data => console.log(data));
@@ -244,263 +30,256 @@ export default App;
 // getOneUserPost(3, 3)
 //   .then(data => console.log(data));
 
-// // fetchPOI(186) 
-// // .then(data => console.log(data))
+// fetchPOI("city:186")
+//   .then(data => console.log(data))
 
-// class App extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       content: '',
-//       poi_id: '',
-//       city_id: '',
-//       user_id: '',
-//       username: '',
-//       email: '',
-//       password: '',
-//       isLoggedIn: null,
-//       isEdit: false,
-//       selectedJuiceId: null,
-//       isRegister: false,
-//       currentView: 'Login'
-//     }
+class App extends Component {
+  constructor() {
+    super();
 
-//     this.renderToHomePage = this.renderToHomePage.bind(this);
-//     this.logout = this.logout.bind(this)
-//     this.login = this.login.bind(this)
-//     this.isLoggedIn = this.isLoggedIn.bind(this)
-//     this.handleChange = this.handleChange.bind(this)
-//     this.delete = this.delete.bind(this)
-//     this.submitNew = this.submitNew.bind(this)
-//     this.edit = this.edit.bind(this)
-//     // this.showEditForm = this.showEditForm.bind(this)
-//     // this.cancel = this.cancel.bind(this)
-//     this.register = this.register.bind(this)
-//     this.showRegisterForm = this.showRegisterForm.bind(this)
-//   }
+    this.state = {
+      city: {},
+      cities: [],
+      poi: [],
+      content: '',
+      poi_id: '',
+      city_id: '',
+      user_id: '',
+      username: '',
+      email: '',
+      password: '',
+      isLoggedIn: null,
+      isEdit: false,
+      selectedJuiceId: null,
+      isRegister: false,
+      currentView: 'HomePage'
+    };
+    this.logout = this.logout.bind(this)
+    this.isLoggedIn = this.isLoggedIn.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.cancel = this.cancel.bind(this)
+    this.showRegisterForm = this.showRegisterForm.bind(this)
+    this.register = this.register.bind(this)
+    this.login = this.login.bind(this)
+    this.randomCity = this.randomCity.bind(this)
+  }
 
-//   componentDidMount() {
+  // AUTH Functions 
+  // references:
+  // https://medium.com/@nick.hartunian/knock-jwt-auth-for-rails-api-create-react-app-6765192e295a
+  // JZ react-rails-token-auth repo
+  cancel() {
+    this.setState({
+      name: '',
+      sugar: '',
+      isEdit: false,
+      selectedJuiceId: null,
+    })
+  }
 
-//     fetchCities().then(data => this.setState({ cities: data }))
-//   }
+  showRegisterForm() {
+    this.setState({
+      isRegister: true,
+    })
+  }
 
-//   renderToHomePage() {
-//     this.setState({
-//       currentView: 'HomePage'
-//     })
-//   }
+  register() {
+    const url = `${BASE_URL}/users`
+    const body = { "user": { "email": this.state.email, "password": this.state.password } }
+    const init = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify(body)
+    }
+    fetch(url, init)
+      .then(res => res.json())
+      .then(this.setState({
+        isRegister: false,
+      }))
+      .catch(err => err.message)
+  }
 
-//   handleChange(ev) {
-//     ev.preventDefault();
-//     const { name, value } = ev.target;
-//     this.setState({
-//       [name]: value,
-//     });
-//     ;
-//   }
+  login() {
+    const url = `${BASE_URL}/user_token`;
+    const body = { "auth": { "email": this.state.email, "password": this.state.password } }
+    const init = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify(body),
+    }
+    fetch(url, init)
+      .then(res => res.json())
+      .then(res => localStorage.setItem("jwt", res.jwt))
+      .then(() => this.setState({
+        isLoggedIn: true,
+      }))
+      .catch(err => console.log(err))
+  }
 
-//   // AUTHENTICATION
-//   showRegisterForm() {
-//     this.setState({
-//       isRegister: true,
-//     })
-//   }
+  isLoggedIn() {
+    const res = !!(localStorage.getItem("jwt"));
+    this.setState({
+      isLoggedIn: res,
+    })
+    return res;
+  }
 
-//   register() {
-//     const url = `${BASE_URL}/users`
-//     const body = { "user": { "email": this.state.email, "password": this.state.password } }
-//     const init = {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-//       mode: 'cors',
-//       body: JSON.stringify(body)
-//     }
-//     fetch(url, init)
-//       .then(res => res.json())
-//       .then(this.setState({
-//         isRegister: false,
-//       }))
-//       .catch(err => err.message)
-//   }
+  logout() {
+    localStorage.removeItem("jwt")
+    this.setState({
+      isLoggedIn: false,
+      juices: [],
+      name: "",
+      email: "",
+    })
+  }
+  // END OF AUTH
 
-//   login() {
-//     const url = `${BASE_URL}/user_token`;
-//     const body = { "auth": { "email": this.state.email, "password": this.state.password } }
-//     const init = {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-//       mode: 'cors',
-//       body: JSON.stringify(body),
-//     }
-//     fetch(url, init)
-//     .then(data => console.log(data))
-//       .then(res => res.json())
-//       .then(res => localStorage.setItem("jwt", res.jwt))
-//       .then(() => this.setState({
-//         isLoggedIn: true,
-//       }))
-//       .then(() => console.log('yay it worked'))
-//       // this.getJuices())
-//       .catch(err => console.log(err))
-//   }
+  componentDidMount() {
+    // this.isLoggedIn()
+    fetchCities()
+      .then(data => this.setState({ cities: data.cities }))
+    fetchPOI(this.state.city_id)
+      .then(data => this.setState({ poi: data }))
+  }
+  //renders to the homepage (for logo)
+  renderToHomePage() {
+    this.setState({
+      currentView: 'HomePage'
+    })
+  }
 
-//   edit(id) {
-//     const jwt = localStorage.getItem("jwt")
-//     const body = { "juice": { "name": this.state.name, "sugar": this.state.sugar } }
-//     const init = {
-//       headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-//       method: 'PUT',
-//       mode: 'cors',
-//       body: JSON.stringify(body)
-//     }
-//     fetch(`${BASE_URL}/juices/${id}`, init)
-//       .then(() => this.getJuices())
-//       .then(this.setState({
-//         name: '',
-//         sugar: '',
-//         isEdit: false,
-//         selectedJuiceId: null,
-//       }))
-//       .catch(err => err.message)
+  // handles the random city view after user clicks the button from the HomePage
+ randomCity(random_city) {
+    async function poiCity() {
+    let data = await(
+      await(fetchPOI(random_city))).json();
+      console.log(data)
+    }
+    console.log(poiCity());
+    // await fetchPOI(random_city.city_id)
+    //   .then(data => console.log(data))
+      // .then(data => {
+      //   this.setState({
+      //     poi: data.data.places,
+      //     city: random_city,
+      //     city_id: random_city.data_id,
+      //     currentView: `City`
+      //   })
+      // })
+  }
+  // randomCity(random_city) {
+  //   async function poiCity() {
+  //   let data = await(
+  //     await(fetchPOI(random_city))).json();
+  //     console.log(data)
+  //   }
+  //   console.log(poiCity());
+  //   // await fetchPOI(random_city.city_id)
+  //   //   .then(data => console.log(data))
+  //     // .then(data => {
+  //     //   this.setState({
+  //     //     poi: data.data.places,
+  //     //     city: random_city,
+  //     //     city_id: random_city.data_id,
+  //     //     currentView: `City`
+  //     //   })
+  //     // })
+  // }
 
-//   }
-//   submitNew() {
-//     const jwt = localStorage.getItem("jwt")
-//     const body = {
-//       "post": {
-//         "content": this.state.content,
-//         "poi_id": this.state.poi_id
-//       },
-//       "city_id": this.state.city_id,
-//       "user_id": this.state.user_id
-//     }
-//     const init = {
-//       headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-//       method: 'POST',
-//       mode: 'cors',
-//       body: JSON.stringify(body)
-//     }
-//     this.createPost(this.state.cityId, init)
-//       .then(data => console.log(data))
-//       .catch(err => err.message)
-//   }
+  // shows all POI for the chosen city
+  poiCity() {
+    fetchPOI(this.state.city_id)
+      .then(data => {
+        this.setState({
+          poi: data.data.places
+        })
+      })
+  }
 
-//   delete(id) {
-//     const jwt = localStorage.getItem("jwt")
-//     const init = {
-//       headers: { "Authorization": `Bearer ${jwt}` },
-//       method: 'DELETE',
-//       mode: 'cors',
-//     }
-//     fetch(`${BASE_URL}/juices/${id}`, init)
-//       .then(() => this.getJuices())
-//       .catch(err => err.message)
-//   }
+  //handles form change events
+  handleChange(ev) {
+    ev.preventDefault();
+    const { name, value } = ev.target;
+    this.setState({
+      [name]: value,
+    })
+  }
 
-//   isLoggedIn() {
-//     const res = !!(localStorage.getItem("jwt"));
-//     this.setState({
-//       isLoggedIn: res,
-//     })
-//     return res;
-//   }
+  // render views
+  determineWhichToRender() {
+    const { currentView, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
 
-//   logout() {
-//     localStorage.removeItem("jwt")
-//     this.setState({
-//       isLoggedIn: false,
-//       juices: [],
-//       name: "",
-//       email: "",
-//     })
-//   }
+    switch (currentView) {
+      case 'HomePage':
+        return <HomePage
+          city={city}
+          cities={cities}
+          randomCity={this.randomCity}
+        // handleChange={this.handleChange}
+        />
+
+      // case 'NewPost':
+      //   return <NewPost
+      //     content={content}
+      //     poi_id={poi_id}
+      //     city_id={city_id}
+      //     user_id={user_id}
+      //     handleChange={this.handleChange}
+      //     submitNew={this.submitNew}
+      //     isLoggedIn={isLoggedIn}
+      //   />
+
+      case 'City':
+        return <City />
+
+      case 'Login':
+        return <Login handleChange={this.handleChange}
+          login={this.login}
+          logout={this.logout}
+          email={this.state.email}
+          password={this.state.password}
+          isRegister={this.state.isRegister}
+          register={this.register}
+        />
+    }
+
+  }
+
+  render() {
+    return (
+      <div>
+        <Header
+          renderToHomePage={this.renderToHomePage}
+          logout={this.logout}
+          showRegisterForm={this.showRegisterForm} />
+        {this.determineWhichToRender()}
+      </div>
+    );
+  }
+  // return (
+  //   <div className="App">
+  //     <Header 
+  //     logout={this.logout} 
+  //     create={this.create}
+  //     showRegisterForm={this.showRegisterForm}
+  //     />
+  //     <div> {display} </div>
+  //     <JuiceForm 
+  //     handleChange={this.handleChange} 
+  //     submitNew={this.submitNew} 
+  //     name={this.state.name}
+  //     sugar={this.state.sugar}
+  //     isEdit={this.state.isEdit}
+  //     id={this.state.selectedJuiceId}
+  //     edit={this.edit}
+  //     cancel={this.cancel}
+  //     />
+  //   </div>
+  // );
+}
 
 
-
-//   // componentDidMount() {
-//   //   this.isLoggedIn()
-//   //   this.getJuices()
-//   // }
-
-//   // render views
-//   determineWhichToRender() {
-//     const { currentView, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
-
-//     switch (currentView) {
-//       case 'HomePage':
-//         return <HomePage />
-
-//       // case 'NewPost':
-//       //   return <NewPost
-//       //     content={content}
-//       //     poi_id={poi_id}
-//       //     city_id={city_id}
-//       //     user_id={user_id}
-//       //     handleChange={this.handleChange}
-//       //     submitNew={this.submitNew}
-//       //     isLoggedIn={isLoggedIn}
-//       //   />
-
-//       case 'Login':
-//         return <Login handleChange={this.handleChange}
-//           login={this.login}
-//           logout={this.logout}
-//           email={this.state.email}
-//           password={this.state.password}
-//           isRegister={this.state.isRegister}
-//           register={this.register}
-//         />
-//     }
-
-//   }
-//   //   render() {
-//   //     const display = this.state.isLoggedIn ? this.state.juices.map(juice => {
-//   //           return (<Juice 
-//   //           key={juice.id} 
-//   //           juice={juice} 
-//   //           delete={this.delete} 
-//   //           edit={this.submitEdit}
-//   //           showEditForm={this.showEditForm}
-//   //           />)
-//   //         }) : <Login handleChange={this.handleChange}
-//   //                  login={this.login}
-//   //                  logout={this.logout}
-//   //                  email={this.state.email}
-//   //                  password={this.state.password}
-//   //                  isRegister={this.state.isRegister}
-//   //                  register={this.register}
-//   //                  />
-//   //     return (
-//   //       <div className="App">
-//   //         <Header 
-//   //         logout={this.logout} 
-//   //         create={this.create}
-//   //         showRegisterForm={this.showRegisterForm}
-//   //         />
-//   //         <div> {display} </div>
-//   //         <JuiceForm 
-//   //         handleChange={this.handleChange} 
-//   //         submitNew={this.submitNew} 
-//   //         name={this.state.name}
-//   //         sugar={this.state.sugar}
-//   //         isEdit={this.state.isEdit}
-//   //         id={this.state.selectedJuiceId}
-//   //         edit={this.edit}
-//   //         cancel={this.cancel}
-//   //         />
-//   //       </div>
-//   //     );
-//   //   }
-//   // }
-//   render() {
-
-//     return (
-//       <div>
-//         <Header renderToHomePage={this.renderToHomePage} logout={this.logout} showRegisterForm={this.showRegisterForm} />
-//         {this.determineWhichToRender()}
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
+export default App;

@@ -1,5 +1,8 @@
 const BASE_URL = process.env.REACT_APP_API_URL
 
+
+
+
 export function fetchCities() {
   return fetch(`${BASE_URL}/cities`)
   .then(resp => resp.json())
@@ -11,7 +14,7 @@ export function fetchPOI(id) {
       'x-api-key': 'bOOrD46mXo6vdCBapUWFI82347FpbTbWauCD4vBf'
     }
   }
-  return fetch(`https://api.sygictravelapi.com/1.0/en/places/list?parents=city:${id}&levels=poi&limit=1024&categories=discovering`, opts)
+  return fetch(`https://api.sygictravelapi.com/1.0/en/places/list?parents=${id}&levels=poi&limit=1024&categories=discovering`, opts)
   .then(resp => resp.json())
 }
 
