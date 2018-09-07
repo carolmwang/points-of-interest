@@ -24,8 +24,8 @@ const BASE_URL = process.env.REACT_APP_API_URL
 // getAllUserPosts(3)
 //   .then(data => console.log(data));
 
-// getAllCityPosts(2623)
-//   .then(data => console.log(data));
+getAllCityPosts(2623)
+  .then(data => console.log(data));
 
 // getOneUserPost(3, 3)
 //   .then(data => console.log(data));
@@ -38,6 +38,7 @@ class App extends Component {
     super();
 
     this.state = {
+      idCity: '',
       city: {},
       cities: [],
       poi: [],
@@ -63,6 +64,7 @@ class App extends Component {
     this.login = this.login.bind(this)
     this.randomCity = this.randomCity.bind(this)
     this.poiCity = this.poiCity.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   // AUTH Functions 
@@ -155,12 +157,21 @@ class App extends Component {
   // handles the random city view after user clicks the button from the HomePage
   randomCity(random_city) {
     this.setState({
+      idCity: random_city.id,
       city: random_city,
       city_id: random_city.data_id,
-      currentView: `City`
+      currentView: 'City',
     })
   }
 
+  handleSubmit(city){
+    this.setState({
+      idCity: city.id,
+      city: city,
+      city_id: city.data_id,
+      currentView: 'City',
+    })
+  }
   // fetchOnClick() {
   //   fetchPOI(random_city)
   // }
@@ -206,7 +217,7 @@ class App extends Component {
 
   // render views
   determineWhichToRender() {
-    const { currentView, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
+    const { currentView, idCity, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
 
     switch (currentView) {
       case 'HomePage':
@@ -214,6 +225,7 @@ class App extends Component {
           city={city}
           cities={cities}
           randomCity={this.randomCity}
+          handleSubmit={this.handleSubmit}
         // handleChange={this.handleChange}
         />
 
@@ -231,6 +243,7 @@ class App extends Component {
       case 'City':
         return <City 
         city_id={city_id}
+        id={idCity}
         />
 
       case 'Login':

@@ -14,6 +14,7 @@ export default function HomePage(props) {
             })
           }
         </select>
+        <button onSubmit={props.handleSubmit}>Submit</button>
       </form>
       <button onClick={
         (ev) => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { fetchPOI } from '../services/api';
+import { fetchPOI, getAllCityPosts } from '../services/api';
 import CategoryPOI from './CategoryPOI'
+import Posts from './Posts'
 
 
 class City extends Component {
@@ -12,6 +13,7 @@ class City extends Component {
       poiCity: '',
       categories: ["discovering", "eating", "going_out", "hiking", "playing", "relaxing", "shopping", "sightseeing", "sleeping", "doing_sports", "traveling"],
       category: 'discovering',
+      posts: [],
     }
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
@@ -22,6 +24,11 @@ class City extends Component {
         this.setState({
           poi: data.data.places,
           poiCity: data.data.places[0] ? data.data.places[0].name_suffix : "Nothing to do here..",
+        }))
+    getAllCityPosts(this.props.id)
+        .then(data => 
+        this.setState({
+          posts: data,
         }))
   }
 
@@ -37,9 +44,11 @@ class City extends Component {
         }))
   }
 
+
   render() {
     return (
       <div>
+
         <nav>
           {
             this.state.categories.map(category => {
@@ -51,9 +60,10 @@ class City extends Component {
         </nav>
 
         <h3>{this.state.poiCity}</h3>
-        <CategoryPOI poi={this.state.poi}/>
+        <CategoryPOI poi={this.state.poi} />
+        <Posts posts={this.state.posts}/>
+        
 
-        <div></div>
       </div>
     )
   }

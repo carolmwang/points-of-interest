@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(city_id: params[:city_id])
     end
-    render json: @posts
+    render json: @posts, include: :user
   end
 
   # GET /users/:user_id/posts/:id
@@ -24,9 +24,9 @@ class PostsController < ApplicationController
     @new_post = Post.new(post_params)
 
     if @new_post.save
-      render json: { post: @new_post, status: :created, location: @new_post }
+      render json: @new_post, status: :created, location: @new_post
     else
-      render json: { post: @new_post.errors, status: :unprocessable_entity }
+      render json: @new_post.errors, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       render json: @post
     else
-      render json: { errors: @post.errors, status: :unprocessable_entity }
+      render json: @post.errors, status: :unprocessable_entity
     end
   end
 
