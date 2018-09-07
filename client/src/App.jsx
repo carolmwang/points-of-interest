@@ -30,8 +30,8 @@ const BASE_URL = process.env.REACT_APP_API_URL
 // getOneUserPost(3, 3)
 //   .then(data => console.log(data));
 
-// fetchPOI("city:186")
-//   .then(data => console.log(data))
+// fetchPOI("city:10553")
+//   .then(data => console.log(data.data.places))
 
 class App extends Component {
   constructor() {
@@ -142,8 +142,8 @@ class App extends Component {
     // this.isLoggedIn()
     fetchCities()
       .then(data => this.setState({ cities: data.cities }))
-    fetchPOI(this.state.city_id)
-      .then(data => this.setState({ poi: data.data.places }))
+    // fetchPOI("city:10553")
+    //   .then(data => this.setState({ poi: data.data.places }))
   }
   //renders to the homepage (for logo)
   renderToHomePage() {
@@ -160,6 +160,10 @@ class App extends Component {
       currentView: `City`
     })
   }
+
+  // fetchOnClick() {
+  //   fetchPOI(random_city)
+  // }
 
 
   // randomCity(random_city) {

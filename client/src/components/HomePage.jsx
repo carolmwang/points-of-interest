@@ -19,6 +19,7 @@ export default function HomePage(props) {
         (ev) => {
           ev.preventDefault();
           const random_city = props.cities[Math.floor(Math.random() * props.cities.length)];
+          console.log(random_city);
           props.randomCity(random_city)}}>Where to next?</button>
     </div>
   )
