@@ -29,36 +29,56 @@ class NewPost extends Component {
     })
   }
 
+  createPost() {
+
+    const jwt = localStorage.getItem("jwt")
+    const body = {
+      "post":
+        { 
+        "content": this.state.content, 
+        "poi_id": this.state.poi_id, 
+        "city_id": this.state.poi_id, 
+        "user_id": this.state.user_id 
+      }
+    }
+    const init = {
+      headers: {"Authorization": `Bearer ${jwt}`,'Content-Type': 'application/json', 'Accept': 'application/json'},
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(body)
+    }
+  }
+
   render() {
     const props = this.state.isLoggedIn
     return (
       props ?
-      <div>
-        <form name="content">
-          <label></label>
-          <input
-            type="text"
-            name="content"
-            value={this.props.content}
-            handleChange={this.handleChange}
-            placeholder="Share your experience of this point of interest!" />
-         
-          <button>Submit</button>
-        </form>
-      </div>
-      :
-      <div>
-      <form name="content">
-        <label></label>
-        <input
-          type="text"
-          name="content"
-          value={this.props.content}
-          handleChange={this.handleChange}
-          placeholder="Share your experience of this point of interest!" />
-       
-       <button onClick={props.handlePostLogin}>Register</button> | <button onClick={props.handlePostLogin}>Login</button>      </form>
-    </div>
+        <div>
+          <form name="content">
+            <label></label>
+            <input
+              type="text"
+              name="content"
+              value={this.props.content}
+              handleChange={this.handleChange}
+              placeholder="Share your experience of this point of interest!" />
+
+            <button>Submit</button>
+          </form>
+        </div>
+        :
+        <div>
+          <form name="content">
+            <label></label>
+            <input
+              type="text"
+              name="content"
+              value={this.props.content}
+              handleChange={this.handleChange}
+              placeholder="Share your experience of this point of interest!" />
+
+            <button onClick={props.handlePostLogin}>Register</button> | <button onClick={props.handlePostLogin}>Login</button>      </form>
+        </div>
 
     )
   }
@@ -96,6 +116,6 @@ class NewPost extends Component {
   //       {post}
   //     </div>
   //   )
-  }
+}
 
-  export default NewPost;
+export default NewPost;

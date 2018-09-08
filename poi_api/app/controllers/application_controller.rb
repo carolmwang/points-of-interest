@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
   include Knock::Authenticable
 
-  # def current_user
-  #   return unless session[:id]
-  #     @current_user ||= User.find(session[:id])
-  # end
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find_by_id(session[:user_id]) 
+  end
 
 end

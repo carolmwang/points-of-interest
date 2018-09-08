@@ -3,7 +3,6 @@ import { fetchPOI, getAllCityPosts } from '../services/api';
 import CategoryPOI from './CategoryPOI'
 import Posts from './Posts'
 
-
 class City extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +13,7 @@ class City extends Component {
       categories: ["discovering", "eating", "going_out", "hiking", "playing", "relaxing", "shopping", "sightseeing", "sleeping", "doing_sports", "traveling"],
       category: 'discovering',
       posts: [],
+      isLoggedIn: props.isLoggedIn
     }
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
@@ -27,9 +27,10 @@ class City extends Component {
         }))
     getAllCityPosts(this.props.id)
         .then(data => 
+          {console.log(data);
         this.setState({
           posts: data,
-        }))
+        })})
   }
 
   handleCategoryClick(ev) {
@@ -61,7 +62,12 @@ class City extends Component {
 
         <h3>{this.state.poiCity}</h3>
         <CategoryPOI poi={this.state.poi} />
-        <Posts posts={this.state.posts} cityid={this.state.city_id} handlePostLogin={this.props.handlePostLogin}/>
+        <Posts 
+        posts={this.state.posts} 
+        cityid={this.state.city_id} 
+        handlePostLogin={this.props.handlePostLogin}
+        isLoggedIn= {this.state.isLoggedIn}
+        newPost = {this.props.newPost}/>
         
 
       </div>

@@ -6,10 +6,8 @@ export default function HomePage(props) {
     <div>
       <form onSubmit={
           (ev) => {
-            debugger;
             ev.preventDefault();
             props.handleSubmit(ev.target.value)
-            debugger;
           }
           }>
         <select name="city" handleChange={props.handleChange}>

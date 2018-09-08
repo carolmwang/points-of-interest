@@ -15,6 +15,7 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 // import NewPost from './components/NewPost';
 import City from './components/City';
+import NewPost from './components/NewPost';
 
 const BASE_URL = process.env.REACT_APP_API_URL
 
@@ -43,14 +44,11 @@ class App extends Component {
       city: {},
       cities: [],
       poi: [],
-      content: '',
-      poi_id: '',
-      city_id: '',
       user_id: '',
       username: '',
       email: '',
       password: '',
-      isLoggedIn: null,
+      isLoggedIn: false,
       isEdit: false,
       // selectedJuiceId: null,
       isRegister: false,
@@ -67,6 +65,7 @@ class App extends Component {
     this.poiCity = this.poiCity.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePostLogin = this.handlePostLogin.bind(this)
+    this.newPost = this.newPost.bind(this)
   }
 
   // AUTH Functions 
@@ -119,8 +118,11 @@ class App extends Component {
       .then(res => localStorage.setItem("jwt", res.jwt))
       .then(() => this.setState({
         isLoggedIn: true,
+        currentView: 'City'
       }))
       .catch(err => console.log(err))
+    // fetch(`${BASE_URL}/users`)
+    // .then(resp => console.log(resp.json()))
   }
 
   isLoggedIn() {
@@ -165,6 +167,19 @@ class App extends Component {
     })
   }
 
+  // findCity(id) {
+  //   oneCity(id)
+  
+  //   .then(data => {
+  //     this.setState({
+  //       idCity: data.id,
+  //       city: data,
+  //       city_id: data.data_id,
+  //       currentView: 'City',
+  //     })
+  //   })
+  // }
+
   handleSubmit(id) {
     oneCity(id)
       .then(data =>
@@ -195,68 +210,98 @@ class App extends Component {
     })
   }
 
-  handlePostLogin() {
-    this.setState({
-      currentView: 'Login'
-    })
-  }
-
-  // render views
-  determineWhichToRender() {
-    const { currentView, idCity, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
-
-    switch (currentView) {
-      case 'HomePage':
-        return <HomePage
-          city={city}
-          cities={cities}
-          randomCity={this.randomCity}
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-        />
-
-      // case 'Posts':
-      //   return <Posts
-      //     content={content}
-      //     poi_id={poi_id}
-      //     city_id={city_id}
-      //     user_id={user_id}
-      //     handleChange={this.handleChange}
-      //     submitNew={this.submitNew}
-      //     isLoggedIn={isLoggedIn}
-      //   />
-
-      case 'City':
-        return <City
-          city_id={city_id}
-          id={idCity}
-          handlePostLogin={this.handlePostLogin}
-        />
-
-      case 'Login':
-        return <Login handleChange={this.handleChange}
-          login={this.login}
-          logout={this.logout}
-          email={this.state.email}
-          password={this.state.password}
-          isRegister={this.state.isRegister}
-          register={this.register}
-        />
+  newPost(post) {
+    const jwt = localStorage.getItem("jwt")
+    // const body = {
+    //   "post":
+    //   {
+    //     "content": this.state.content,
+    //     "city_id": this.state.poi_id,
+    //     "user_id": this.state.user_id
+    //   }
+    // }
+    const init = {
+      headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(post)
     }
-
+    createPost(this.state.city_id, init)
+      .then(
+        this.setState({
+          currentView: 'City'
+        })
+      )
+      .catch(err => err.message)
   }
 
-  render() {
-    return (
-      <div>
-        <Header
-          renderToHomePage={this.renderToHomePage}
-          logout={this.logout}
-          showRegisterForm={this.showRegisterForm} />
-        {this.determineWhichToRender()}
-      </div>
-    );
+
+handlePostLogin() {
+  this.setState({
+    currentView: 'Login'
+  })
+}
+
+// render views
+determineWhichToRender() {
+  const { currentView, idCity, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
+
+  switch (currentView) {
+    case 'HomePage':
+      return <HomePage
+        city={city}
+        cities={cities}
+        randomCity={this.randomCity}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        findCity={this.findCity}
+      />
+
+    // case 'Posts':
+    //   return <Posts
+    //     content={content}
+    //     poi_id={poi_id}
+    //     city_id={city_id}
+    //     user_id={user_id}
+    //     handleChange={this.handleChange}
+    //     submitNew={this.submitNew}
+    //     isLoggedIn={isLoggedIn}
+    //   />
+
+    case 'City':
+      return <City
+        city_id={city_id}
+        id={idCity}
+        handleChange={this.handleChange}
+        handlePostLogin={this.handlePostLogin}
+        isLoggedIn={isLoggedIn}
+        newPost={this.newPost}
+      />
+
+    case 'Login':
+      return <Login handleChange={this.handleChange}
+        login={this.login}
+        logout={this.logout}
+        email={this.state.email}
+        password={this.state.password}
+        isRegister={this.state.isRegister}
+        register={this.register}
+      />
   }
+
+}
+
+render() {
+  return (
+    <div>
+      <Header
+        renderToHomePage={this.renderToHomePage}
+        logout={this.logout}
+        showRegisterForm={this.showRegisterForm} />
+      {this.determineWhichToRender()}
+    </div>
+  );
+}
   // return (
   //   <div className="App">
   //     <Header 
