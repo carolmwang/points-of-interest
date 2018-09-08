@@ -61,7 +61,7 @@ class City extends Component {
 
         <h3>{this.state.poiCity}</h3>
         <CategoryPOI poi={this.state.poi} />
-        <Posts posts={this.state.posts}/>
+        <Posts posts={this.state.posts} cityid={this.state.city_id} handlePostLogin={this.props.handlePostLogin}/>
         
 
       </div>

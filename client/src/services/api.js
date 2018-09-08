@@ -8,6 +8,11 @@ export function fetchCities() {
   .then(resp => resp.json())
 }
 
+export function oneCity(id) {
+  return fetch(`${BASE_URL}/cities/id`)
+  .then(resp => resp.json())
+}
+
 export function fetchPOI(id, category) {
   const opts = {
     headers: {

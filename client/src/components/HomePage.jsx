@@ -4,17 +4,24 @@ import React from 'react';
 export default function HomePage(props) {
   return (
     <div>
-      <form>
-        <select name="city">
+      <form onSubmit={
+          (ev) => {
+            debugger;
+            ev.preventDefault();
+            props.handleSubmit(ev.target.value)
+            debugger;
+          }
+          }>
+        <select name="city" handleChange={props.handleChange}>
           {
             props.cities.map(city => {
               return (
-                <option key ={city.id} value={city.data_id}>{city.name}</option>
+                <option key ={city.id} value={city.id}>{city.name}</option>
               )
             })
           }
         </select>
-        <button onSubmit={props.handleSubmit}>Submit</button>
+        <button >Submit</button>
       </form>
       <button onClick={
         (ev) => {

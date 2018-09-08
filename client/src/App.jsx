@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   fetchCities,
+  oneCity,
   getAllUserPosts,
   getAllCityPosts,
   getOneUserPost,
@@ -51,7 +52,7 @@ class App extends Component {
       password: '',
       isLoggedIn: null,
       isEdit: false,
-      selectedJuiceId: null,
+      // selectedJuiceId: null,
       isRegister: false,
       currentView: 'HomePage'
     };
@@ -65,6 +66,7 @@ class App extends Component {
     this.randomCity = this.randomCity.bind(this)
     this.poiCity = this.poiCity.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handlePostLogin = this.handlePostLogin.bind(this)
   }
 
   // AUTH Functions 
@@ -140,12 +142,11 @@ class App extends Component {
   }
   // END OF AUTH
 
+  // organize cities alphabetically
   componentDidMount() {
     // this.isLoggedIn()
     fetchCities()
       .then(data => this.setState({ cities: data.cities }))
-    // fetchPOI("city:10553")
-    //   .then(data => this.setState({ poi: data.data.places }))
   }
   //renders to the homepage (for logo)
   renderToHomePage() {
@@ -164,37 +165,16 @@ class App extends Component {
     })
   }
 
-  handleSubmit(city){
-    this.setState({
-      idCity: city.id,
-      city: city,
-      city_id: city.data_id,
-      currentView: 'City',
-    })
+  handleSubmit(id) {
+    oneCity(id)
+      .then(data =>
+        this.setState({
+          idCity: data.id,
+          city: data,
+          city_id: data.data_id,
+          currentView: 'City',
+        }))
   }
-  // fetchOnClick() {
-  //   fetchPOI(random_city)
-  // }
-
-
-  // randomCity(random_city) {
-  //   async function poiCity() {
-  //   let data = await(
-  //     await(fetchPOI(random_city))).json();
-  //     console.log(data)
-  //   }
-  //   console.log(poiCity());
-  //   // await fetchPOI(random_city.city_id)
-  //   //   .then(data => console.log(data))
-  //     // .then(data => {
-  //     //   this.setState({
-  //     //     poi: data.data.places,
-  //     //     city: random_city,
-  //     //     city_id: random_city.data_id,
-  //     //     currentView: `City`
-  //     //   })
-  //     // })
-  // }
 
   // shows all POI for the chosen city
   poiCity() {
@@ -215,6 +195,12 @@ class App extends Component {
     })
   }
 
+  handlePostLogin() {
+    this.setState({
+      currentView: 'Login'
+    })
+  }
+
   // render views
   determineWhichToRender() {
     const { currentView, idCity, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
@@ -226,11 +212,11 @@ class App extends Component {
           cities={cities}
           randomCity={this.randomCity}
           handleSubmit={this.handleSubmit}
-        // handleChange={this.handleChange}
+          handleChange={this.handleChange}
         />
 
-      // case 'NewPost':
-      //   return <NewPost
+      // case 'Posts':
+      //   return <Posts
       //     content={content}
       //     poi_id={poi_id}
       //     city_id={city_id}
@@ -241,9 +227,10 @@ class App extends Component {
       //   />
 
       case 'City':
-        return <City 
-        city_id={city_id}
-        id={idCity}
+        return <City
+          city_id={city_id}
+          id={idCity}
+          handlePostLogin={this.handlePostLogin}
         />
 
       case 'Login':
