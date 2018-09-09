@@ -6,8 +6,9 @@ class Posts extends Component {
     this.state = {
       content: '',
       poi_id: '',
-      city_id: props.cityid,
-      user_id: props.user_id
+      city_id: props.id,
+      user_id: props.user_id,
+
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -23,7 +24,7 @@ class Posts extends Component {
 
   onSubmit(ev) {
     ev.preventDefault();
-    this.props.newPost(this.state)
+    this.props.newPost({body: this.state})
   }
 
   render() {

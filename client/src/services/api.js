@@ -1,8 +1,5 @@
 const BASE_URL = process.env.REACT_APP_API_URL
 
-
-
-
 export function fetchCities() {
   return fetch(`${BASE_URL}/cities`)
   .then(resp => resp.json())

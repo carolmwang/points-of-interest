@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @new_post = Post.new(post_params)
     
     if @new_post.save
-      render json: @new_post, status: :created, location: @new_post
+      render json: @new_post, status: :created
     else
       render json: @new_post.errors, status: :unprocessable_entity
     end

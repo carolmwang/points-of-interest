@@ -65,7 +65,7 @@ class App extends Component {
     this.login = this.login.bind(this)
     this.randomCity = this.randomCity.bind(this)
     this.poiCity = this.poiCity.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.pickCity = this.pickCity.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
     this.newPost = this.newPost.bind(this)
     this.findUserId = this.findUserId.bind(this)
@@ -196,7 +196,7 @@ class App extends Component {
   //   })
   // }
 
-  handleSubmit(id) {
+  pickCity(id) {
     oneCity(id)
       .then(data =>
         this.setState({
@@ -228,21 +228,12 @@ class App extends Component {
 
   newPost(post) {
     const jwt = localStorage.getItem("jwt")
-    // const body = {
-    //   "post":
-    //   {
-    //     "content": this.state.content,
-    //     "city_id": this.state.poi_id,
-    //     "user_id": this.state.user_id
-    //   }
-    // }
     const init = {
       headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify(post)
     }
-    console.log(init)
     createPost(this.state.idCity, init)
       .then(
         this.setState({
@@ -269,22 +260,11 @@ determineWhichToRender() {
         city={city}
         cities={cities}
         randomCity={this.randomCity}
-        handleSubmit={this.handleSubmit}
+        pickCity={this.pickCity}
         handleChange={this.handleChange}
         findCity={this.findCity}
         login={this.handleLogin}
       />
-
-    // case 'Posts':
-    //   return <Posts
-    //     content={content}
-    //     poi_id={poi_id}
-    //     city_id={city_id}
-    //     user_id={user_id}
-    //     handleChange={this.handleChange}
-    //     submitNew={this.submitNew}
-    //     isLoggedIn={isLoggedIn}
-    //   />
 
     case 'City':
       return <City
@@ -322,26 +302,6 @@ render() {
     </div>
   );
 }
-  // return (
-  //   <div className="App">
-  //     <Header 
-  //     logout={this.logout} 
-  //     create={this.create}
-  //     showRegisterForm={this.showRegisterForm}
-  //     />
-  //     <div> {display} </div>
-  //     <JuiceForm 
-  //     handleChange={this.handleChange} 
-  //     submitNew={this.submitNew} 
-  //     name={this.state.name}
-  //     sugar={this.state.sugar}
-  //     isEdit={this.state.isEdit}
-  //     id={this.state.selectedJuiceId}
-  //     edit={this.edit}
-  //     cancel={this.cancel}
-  //     />
-  //   </div>
-  // );
 }
 
 

@@ -8,6 +8,7 @@ class City extends Component {
     super(props);
     this.state = {
       city_id: this.props.city_id,
+      id: this.props.id,
       poi: [],
       poiCity: '',
       categories: ["discovering", "eating", "going_out", "hiking", "playing", "relaxing", "shopping", "sightseeing", "sleeping", "doing_sports", "traveling"],
@@ -65,7 +66,7 @@ class City extends Component {
         <CategoryPOI poi={this.state.poi} />
         <Posts 
         posts={this.state.posts} 
-        cityid={this.state.city_id} 
+        id={this.state.id} 
         handlePostLogin={this.props.handlePostLogin}
         isLoggedIn= {this.state.isLoggedIn}
         newPost = {this.props.newPost}
