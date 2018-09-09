@@ -6,7 +6,7 @@ export function fetchCities() {
 }
 
 export function oneCity(id) {
-  return fetch(`${BASE_URL}/cities/id`)
+  return fetch(`${BASE_URL}/cities/${id}`)
   .then(resp => resp.json())
 }
 

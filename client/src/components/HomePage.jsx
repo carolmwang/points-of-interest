@@ -1,52 +1,56 @@
 import React, { Component } from 'react';
+import { fetchCities } from '../services/api';
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: this.props.cities,
-      cityId:'',
-      city: {},
-
+      cities: [],
+      city: null,
     };
     this.handleChange = this.handleChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    // this.isLoggedIn()
+    fetchCities()
+      .then(data => this.setState({ cities: data.cities }))
   }
 
   handleChange(ev) {
-    ev.preventDefault();
-    const { name, value } = ev.target;
+    // const { name, value } = ev.target.value;
     this.setState({
-      [name]: value,
+      city: ev.target.value,
     })
   }
 
-  onSubmit(ev) {
+  handleSubmit(ev) {
     ev.preventDefault();
-    this.props.pickCity({ body: this.state })
+    console.log(this.props.pickCity(this.state.city))
+    this.props.pickCity(this.state.city)
   }
 
   render() {
     return (
-
       <div>
-        <form onSubmit={
-          (ev) => {
-            ev.preventDefault();
-            this.handleSubmit(this.state.city)
-          }
-        }>
-          <select name="cityId" value={this.state.city} handleChange={this.handleChange}>
+    
+        <form onSubmit={this.handleSubmit}>
+        <label>Pick a city:
+          <select name="city" value={this.state.city} onChange={this.handleChange}>
+            <option value="disabled">Choose a state:</option>
             {
-              this.props.cities.map(city => {
+              this.state.cities.map(city => {
                 return (
                   <option key={city.id} value={city.id}>{city.name}</option>
                 )
               })
             }
           </select>
-          <button >Submit</button>
+          </label>
+          <input type="submit" value="Submit"/>
         </form>
+
         <button onClick={
           (ev) => {
             ev.preventDefault();
@@ -59,7 +63,7 @@ class HomePage extends Component {
     )
   }
 }
-  export default HomePage
+export default HomePage
 
 // export default function HomePage(props) {
 //   return (
@@ -67,19 +71,19 @@ class HomePage extends Component {
 //       <form onSubmit={
 //           (ev) => {
 //             ev.preventDefault();
-//             props.handleSubmit(ev.target.value)
+//             props.pickCity(ev.target.value)
 //           }
 //           }>
-//         <select name="city" handleChange={props.handleChange}>
+//         <select name="city">
 //           {
 //             props.cities.map(city => {
 //               return (
-//                 <option key ={city.id} value={city.id}>{city.name}</option>
+//                 <option key ={city.id} value="2723">{city.name}</option>
 //               )
 //             })
 //           }
 //         </select>
-//         <button >Submit</button>
+//         <button>Submit</button>
 //       </form>
 //       <button onClick={
 //         (ev) => {

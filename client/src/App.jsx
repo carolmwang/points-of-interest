@@ -24,6 +24,8 @@ const BASE_URL = process.env.REACT_APP_API_URL
 // fetchCities()
 //   .then(data => console.log(data));
 
+// oneCity(2723)
+// .then(data => console.log(data));
 
 // getAllUserPosts(3)
 //   .then(data => console.log(data));
@@ -200,9 +202,9 @@ class App extends Component {
     oneCity(id)
       .then(data =>
         this.setState({
-          idCity: data.id,
-          city: data,
-          city_id: data.data_id,
+          idCity: data.city.id,
+          city: data.city,
+          city_id: data.city.data_id,
           currentView: 'City',
         }))
   }
@@ -252,7 +254,15 @@ handleLogin() {
 
 // render views
 determineWhichToRender() {
-  const { currentView, idCity, city, cities, content, poi_id, city_id, user_id, username, email, isLoggedIn } = this.state;
+  const { 
+    currentView, 
+    idCity, 
+    city, 
+    cities, 
+    city_id, 
+    user_id, 
+    isLoggedIn 
+  } = this.state;
 
   switch (currentView) {
     case 'HomePage':
@@ -261,7 +271,6 @@ determineWhichToRender() {
         cities={cities}
         randomCity={this.randomCity}
         pickCity={this.pickCity}
-        handleChange={this.handleChange}
         findCity={this.findCity}
         login={this.handleLogin}
       />
