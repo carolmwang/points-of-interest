@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import jwtDecode from 'jwt-decode';
+
 import {
   fetchCities,
   oneCity,
@@ -8,7 +10,7 @@ import {
   fetchPOI,
   createPost,
 }
-  from './services/api';
+from './services/api';
 
 import Header from './components/Header';
 import HomePage from './components/HomePage';
@@ -64,8 +66,9 @@ class App extends Component {
     this.randomCity = this.randomCity.bind(this)
     this.poiCity = this.poiCity.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handlePostLogin = this.handlePostLogin.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
     this.newPost = this.newPost.bind(this)
+    this.findUserId = this.findUserId.bind(this)
   }
 
   // AUTH Functions 
@@ -104,6 +107,15 @@ class App extends Component {
       .catch(err => err.message)
   }
 
+  findUserId() {
+    const jwt = localStorage.getItem("jwt")
+    const decoded = jwtDecode(jwt)
+    console.log(decoded);
+    this.setState({
+      user_id: decoded.sub 
+    })
+  }
+
   login() {
     const url = `${BASE_URL}/user_token`;
     const body = { "auth": { "email": this.state.email, "password": this.state.password } }
@@ -116,9 +128,10 @@ class App extends Component {
     fetch(url, init)
       .then(res => res.json())
       .then(res => localStorage.setItem("jwt", res.jwt))
-      .then(() => this.setState({
+      .then(this.findUserId())
+      .then(this.setState({
         isLoggedIn: true,
-        currentView: 'City'
+        currentView: 'HomePage'
       }))
       .catch(err => console.log(err))
     // fetch(`${BASE_URL}/users`)
@@ -137,11 +150,14 @@ class App extends Component {
     localStorage.removeItem("jwt")
     this.setState({
       isLoggedIn: false,
-      juices: [],
-      name: "",
-      email: "",
+      name: '',
+      email: '',
+      user_id: '',
+      currentView: 'HomePage',
     })
   }
+
+
   // END OF AUTH
 
   // organize cities alphabetically
@@ -226,7 +242,8 @@ class App extends Component {
       mode: 'cors',
       body: JSON.stringify(post)
     }
-    createPost(this.state.city_id, init)
+    console.log(init)
+    createPost(this.state.idCity, init)
       .then(
         this.setState({
           currentView: 'City'
@@ -236,7 +253,7 @@ class App extends Component {
   }
 
 
-handlePostLogin() {
+handleLogin() {
   this.setState({
     currentView: 'Login'
   })
@@ -255,6 +272,7 @@ determineWhichToRender() {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         findCity={this.findCity}
+        login={this.handleLogin}
       />
 
     // case 'Posts':
@@ -276,6 +294,7 @@ determineWhichToRender() {
         handlePostLogin={this.handlePostLogin}
         isLoggedIn={isLoggedIn}
         newPost={this.newPost}
+        user_id={user_id}
       />
 
     case 'Login':
@@ -297,7 +316,8 @@ render() {
       <Header
         renderToHomePage={this.renderToHomePage}
         logout={this.logout}
-        showRegisterForm={this.showRegisterForm} />
+        showRegisterForm={this.showRegisterForm} 
+        handleLogin={this.handleLogin}/>
       {this.determineWhichToRender()}
     </div>
   );

@@ -21,7 +21,8 @@ class PostsController < ApplicationController
 
   # POST /cities/:city_id/posts
   def create
-    @new_post = Post.new(post_params.merge(user: current_user))
+    @new_post = Post.new(post_params)
+    
     if @new_post.save
       render json: @new_post, status: :created, location: @new_post
     else
@@ -54,7 +55,6 @@ class PostsController < ApplicationController
     def post_params
       params
       .require(:body)
-      .require(:post)
       .permit(
         :content, :poi_id, :city_id, :user_id
         )

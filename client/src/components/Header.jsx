@@ -8,6 +8,7 @@ export default function Header(props) {
         <h1 onClick={renderToHomePage}>POINTS of INTEREST</h1>
         <button onClick={props.logout}>logout</button>
         <h1>Username</h1>
+        <button onClick={props.handleLogin}>Login</button>
       </nav>
     </div>
   )

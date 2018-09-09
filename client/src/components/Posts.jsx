@@ -7,6 +7,7 @@ class Posts extends Component {
       content: '',
       poi_id: '',
       city_id: props.cityid,
+      user_id: props.user_id
     };
     this.handleChange = this.handleChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -42,7 +43,7 @@ class Posts extends Component {
               this.props.isLoggedIn ?
                 <button>Submit</button>
                 :
-                <button onClick={this.props.handlePostLogin}>Login</button>
+                <button onClick={this.props.handleLogin}>Login</button>
             }
           </form>
         </div>

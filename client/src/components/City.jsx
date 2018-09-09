@@ -13,7 +13,8 @@ class City extends Component {
       categories: ["discovering", "eating", "going_out", "hiking", "playing", "relaxing", "shopping", "sightseeing", "sleeping", "doing_sports", "traveling"],
       category: 'discovering',
       posts: [],
-      isLoggedIn: props.isLoggedIn
+      isLoggedIn: props.isLoggedIn,
+      user_id: props.user_id,
     }
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
@@ -67,7 +68,8 @@ class City extends Component {
         cityid={this.state.city_id} 
         handlePostLogin={this.props.handlePostLogin}
         isLoggedIn= {this.state.isLoggedIn}
-        newPost = {this.props.newPost}/>
+        newPost = {this.props.newPost}
+        user_id = {this.state.user_id}/>
         
 
       </div>
