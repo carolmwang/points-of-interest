@@ -239,11 +239,11 @@ class App extends Component {
       body: JSON.stringify(post)
     }
     createPost(this.state.idCity, init)
-      .then(data => {
+      .then(data => 
         this.setState({
-          currentView: 'City'
+          currentView: 'City',
         })
-      }
+      
       )
       .catch(err => err.message)
   }

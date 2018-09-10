@@ -20,22 +20,22 @@ class City extends Component {
     }
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
-
+  // get all ciy posts and points of interest when component mounts
   componentDidMount() {
+    getAllCityPosts(this.props.id)
+      .then(data => {
+        this.setState({
+          posts: data.posts,
+        })
+      })
     fetchPOI(this.state.city_id, this.state.category)
       .then(data =>
         this.setState({
           poi: data.data.places,
-          poiCity: data.data.places[0] ? " " : "Nothing to do here..",
-        }))
-
-    getAllCityPosts(this.props.id)
-      .then(data =>
-        this.setState({
-          posts: data.posts,
+          poiCity: data.data.places[0] ? data.data.places[0].name_suffix : "Nothing to do here..",
         }))
   }
-
+  // fetches the point of interests by category
   handleCategoryClick(ev) {
     ev.preventDefault();
     this.setState({
@@ -62,9 +62,12 @@ class City extends Component {
             })
           }
         </nav>
-
-        <h3>{this.state.cityName}, USA</h3>
-        <h5>{this.state.poiCity}</h5>
+        {
+          this.state.cityName ?
+            <h3>{this.state.cityName}, USA</h3>
+            :
+            <h3>{this.state.poiCity}</h3>
+        }
         <CategoryPOI poi={this.state.poi} />
         <Posts
           posts={this.state.posts}

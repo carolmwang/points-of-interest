@@ -5,7 +5,7 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userPosts: this.props.userPosts,
+      userPosts: [],
       cities: [],
     };
   }
