@@ -1,31 +1,34 @@
 import React from 'react';
 
-const Login = (props) => {
+export default function Login(props) {
   return (
-    <div className="login-form">
+    <div className="columns is-centered">
+    <div className="column is-one-fifth">
       <form>
-        <label htmlFor="email">Email: </label>
+        <label>Email: </label>
         <br />
         <input
           name="email"
           onChange={props.handleChange}
           value={props.email.value}
           type="email"
+          className="input is-warning is-small forminput"
         />
         <br /><br />
-        <label htmlFor="password">Password:</label>
+        <label>Password:</label>
         <br />
         <input
           name="password"
           onChange={props.handleChange}
           value={props.password.value}
           type="password"
+          className="input is-warning is-small forminput"
         />
       </form>
       <br />
-      <button onClick={props.register}>Register</button> | <button onClick={props.login}>Login</button>
+      <a onClick={props.register} className="button is-warning">Register</a> | <a onClick={props.login} className="button is-warning">Login</a>
+    </div>
     </div>
   )
 }
 
-export default Login

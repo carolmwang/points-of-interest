@@ -19,6 +19,7 @@ import Login from './components/Login';
 import City from './components/City';
 import User from './components/User';
 import EditPost from './components/EditPost';
+import './App.css'
 
 const BASE_URL = process.env.REACT_APP_API_URL
 
@@ -126,6 +127,8 @@ class App extends Component {
         this.setState({
           user_id: data.id,
           userInfo: data,
+          isLoggedIn: true,
+          currentView: 'HomePage'
         }))
   }
 
@@ -144,10 +147,6 @@ class App extends Component {
       .then(res => res.json())
       .then(res => localStorage.setItem("jwt", res.jwt))
       .then(this.findUserId())
-      .then(this.setState({
-        isLoggedIn: true,
-        currentView: 'HomePage'
-      }))
       .catch(err => console.log(err))
 
   }
@@ -241,7 +240,7 @@ class App extends Component {
     createPost(this.state.idCity, init)
       .then(data => 
         this.setState({
-          currentView: 'City',
+          currentView: 'User',
         })
       
       )
@@ -360,7 +359,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <Header
           renderToHomePage={this.renderToHomePage}
           logout={this.logout}

@@ -29,17 +29,19 @@ class Posts extends Component {
 
   render() {
     return (
-      <div>
+      <div className="column is-center citypage">
         <div>
           <form onSubmit={this.onSubmit}>
             <label></label>
-            <input
+            <textarea
               type="text"
               name="content"
               value={this.state.content}
               onChange={this.handleChange}
               placeholder="Share your experience here!"
-              required />
+              required 
+              rows="10"
+              className="textarea is-warning is-medium"/>
             {
               this.props.isLoggedIn ?
                 <button>Submit</button>
@@ -53,7 +55,7 @@ class Posts extends Component {
             this.props.posts.map(data => {
              
               return (
-                <div key={data.id}>
+                <div key={data.id} className="posts">
                   <p>{data.content}</p>
                   <p>{data.created_at}</p>
                 </div>

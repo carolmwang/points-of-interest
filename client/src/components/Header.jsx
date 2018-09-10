@@ -3,24 +3,27 @@ import React from 'react';
 export default function Header(props) {
   const { renderToHomePage } = props;
   return (
-    <div>
-      <nav>
-        <h1 onClick={renderToHomePage}>POINTS of INTEREST</h1>
+    <section className="hero">
 
-       {
-         props.isLoggedIn ?
+      <div className="hero-body title is-1 is-center">
+        <h1 onClick={renderToHomePage} className="has-text-centered">POINTS of INTEREST</h1>
 
-         (
-           <div>
-         <h3 onClick={props.handleUserProfile}>{props.userInfo.username}</h3>
-         <button onClick={props.logout}>logout</button>
-         </div>
-        )
-         :
+        {
+          props.isLoggedIn ?
 
-         <button onClick={props.handleLogin}>Login</button>
-       }
-      </nav>
-    </div>
+            (
+              <div>
+                <button onClick={props.handleUserProfile} className="button is-hovered">{props.userInfo.username}</button>
+                <button onClick={props.logout} className="button is-hovered">logout</button>
+              </div>
+            )
+            :
+
+            <button onClick={props.handleLogin} className="button is-warning is-hovered">Login</button>
+        }
+
+
+      </div>
+    </section>
   )
 }

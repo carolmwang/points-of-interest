@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+  margin: 10px;
+}
+
+.category-button {
+  margin: 5px
+}
+
+.city-name {
+  size: 150px;
+}
+
+.citypage {
+  padding-top: 50px;
+
+}
+
+.poi {
+  border: 1px black solid;
+  margin-top: 5px;
+}
+
+.posts {
+  border: 1px black solid;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.forminput {
+  width: 375px;
+  height: 25px;
+}

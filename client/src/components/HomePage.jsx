@@ -33,32 +33,32 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div>
-    
-        <form onSubmit={this.handleSubmit}>
-        <label>Pick a city:
-          <select name="city" value={this.state.city} onChange={this.handleChange}>
-            <option value="disabled">Choose a state:</option>
-            {
-              this.state.cities.map(city => {
-                return (
-                  <option key={city.id} value={city.id}>{city.name}</option>
-                )
-              })
-            }
-          </select>
-          </label>
-          <input type="submit" value="Submit"/>
-        </form>
-
-        <button onClick={
-          (ev) => {
-            ev.preventDefault();
-            const random_city = this.props.cities[Math.floor(Math.random() * this.props.cities.length)];
-            console.log(random_city);
-            this.props.randomCity(random_city)
-          }}>Where to next?</button>
-      </div>
+      <div className="columns">
+        <div className="column ">
+          <form onSubmit={this.handleSubmit} className="select is-warning is-large">
+            <select name="city" value={this.state.city} onChange={this.handleChange}>
+              <option value="disabled">If you know what you're looking for..</option>
+              {
+                this.state.cities.map(city => {
+                  return (
+                    <option key={city.id} value={city.id}>{city.name}</option>
+                  )
+                })
+              }
+            </select>
+            <input type="submit" value="Submit" />
+          </form>
+          </div>
+            <div className="column">
+              <a onClick={
+                (ev) => {
+                  ev.preventDefault();
+                  const random_city = this.props.cities[Math.floor(Math.random() * this.props.cities.length)];
+                  console.log(random_city);
+                  this.props.randomCity(random_city)
+                }} className="button is-large is-warning">Choose a city for me!</a>
+            </div>
+          </div>
 
     )
   }

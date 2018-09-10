@@ -57,17 +57,19 @@ class City extends Component {
           {
             this.state.categories.map(category => {
               return (
-                <button value={category} onClick={this.handleCategoryClick}>{category}</button>
+                <a key={category} value={category} onClick={this.handleCategoryClick}
+                className="button is-medium is-outlined category-button">{category}</a>
               )
             })
           }
         </nav>
         {
           this.state.cityName ?
-            <h3>{this.state.cityName}, USA</h3>
+            <h2 className="title is-1">{this.state.cityName}, USA</h2>
             :
-            <h3>{this.state.poiCity}</h3>
+            <h2 className="title is-1">{this.state.poiCity}</h2>
         }
+        <div className="columns">
         <CategoryPOI poi={this.state.poi} />
         <Posts
           posts={this.state.posts}
@@ -75,7 +77,7 @@ class City extends Component {
           isLoggedIn={this.state.isLoggedIn}
           newPost={this.props.newPost}
           user_id={this.state.user_id} />
-
+        </div>
 
       </div>
     )

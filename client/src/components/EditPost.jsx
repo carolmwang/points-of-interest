@@ -37,13 +37,15 @@ class EditPost extends Component {
 
   render() {
     return (
-      <div>
+      <div className="columns is-centered">
+        <div className="column is-half">
         <form onSubmit={this.onSubmit}>
-          <label>Post</label>
-          <input name="content" value={this.state.content} onChange={this.handleChange} />
-          <input type="submit" value="Update this post" />
+          <label>Edit your post here:</label>
+          <textarea name="content" value={this.state.content} onChange={this.handleChange} className="textarea is-warning" rows="15"/>
+          <button type="submit" className="input is-warning" className="button is-warning is-medium">Update this post</button>
         </form>
-        <button onClick={this.handleDelete}>Delete post</button>
+        <a onClick={this.handleDelete} className="button is-danger">Delete post</a>
+      </div>
       </div>
     )
 
