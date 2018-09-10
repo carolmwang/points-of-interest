@@ -17,4 +17,96 @@ Sitting in your cubicle, just dreaming of your next vacation? This app will rand
 <img width="804" alt="screen shot 2018-09-04 at 12 22 37 pm" src="https://user-images.githubusercontent.com/34017121/45044155-4ad88e80-b03d-11e8-94dd-e09da339e3a4.png">
 <img width="804" alt="screen shot 2018-09-04 at 12 22 48 pm" src="https://user-images.githubusercontent.com/34017121/45044160-4ca25200-b03d-11e8-90db-9f9f4e4eaaed.png">
 
+## Code Snippets
+
+### The switch statement to render views
+```
+determineWhichToRender() {
+    const {
+      currentView,
+      idCity,
+      city,
+      cities,
+      city_id,
+      user_id,
+      isLoggedIn
+    } = this.state;
+
+    switch (currentView) {
+      case 'HomePage':
+        return <HomePage
+          city={city}
+          cities={cities}
+          randomCity={this.randomCity}
+          pickCity={this.pickCity}
+          findCity={this.findCity}
+          login={this.handleLogin}
+        />
+
+      case 'City':
+        return <City
+          city_id={city_id}
+          cityName={this.state.cityName}
+          id={idCity}
+          handleChange={this.handleChange}
+          isLoggedIn={isLoggedIn}
+          newPost={this.newPost}
+          user_id={user_id}
+        />
+
+      case 'Login':
+        return <Login handleChange={this.handleChange}
+          login={this.login}
+          logout={this.logout}
+          email={this.state.email}
+          password={this.state.password}
+          isRegister={this.state.isRegister}
+          register={this.register}
+        />
+      case 'User':
+        return <User user_id={user_id}
+          editPost={this.editPostView}
+          userPosts={this.state.userPosts} />
+      case 'EditPost':
+        return <EditPost
+          postEdit={this.state.postEdit}
+          handleEditPost={this.handleEditPost}
+          handlePostDelete={this.handlePostDelete} />
+    }
+
+  }
+```
+
+### Used jwt decode to grab the user id and store in state
+```
+findUserId() {
+    const jwt = localStorage.getItem("jwt")
+    const decoded = jwtDecode(jwt)
+    getUserInfo(decoded.sub)
+      .then(data =>
+        this.setState({
+          user_id: data.id,
+          userInfo: data,
+          isLoggedIn: true,
+          currentView: 'HomePage'
+        }))
+  }
+```
+## Resources
+
+Auth:
+https://medium.com/@nick.hartunian/knock-jwt-auth-for-rails-api-create-react-app-6765192e295a
+JZ react-rails-token-auth repo
+
+https://www.npmjs.com/package/jwt-decode
+
+## Dependencies
+react
+rack-cors
+bcrypt
+knock
+rails
+es-lint
+jwt-decode
+bulma
 
