@@ -23,24 +23,6 @@ import './App.css'
 
 const BASE_URL = process.env.REACT_APP_API_URL
 
-// fetchCities()
-//   .then(data => console.log(data));
-
-// oneCity(2723)
-// .then(data => console.log(data));
-
-// getAllUserPosts(3)
-//   .then(data => console.log(data));
-
-getAllCityPosts(2623)
-  .then(data => console.log(data));
-
-// getOneUserPost(3, 3)
-//   .then(data => console.log(data));
-
-// fetchPOI("city:10553")
-//   .then(data => console.log(data.data.places))
-
 class App extends Component {
   constructor() {
     super();
@@ -64,7 +46,7 @@ class App extends Component {
       currentView: 'HomePage'
     };
     this.logout = this.logout.bind(this)
-    this.isLoggedIn = this.isLoggedIn.bind(this)
+    // this.isLoggedIn = this.isLoggedIn.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.cancel = this.cancel.bind(this)
     this.showRegisterForm = this.showRegisterForm.bind(this)
@@ -151,14 +133,14 @@ class App extends Component {
 
   }
 
-  isLoggedIn() {
-    const res = !!(localStorage.getItem("jwt"));
-    this.setState({
-      isLoggedIn: res,
-    })
-    this.userInfo(this.state.user_id)
-    return res;
-  }
+  // isLoggedIn() {
+  //   const res = !!(localStorage.getItem("jwt"));
+  //   this.setState({
+  //     isLoggedIn: res,
+  //   })
+  //   this.userInfo(this.state.user_id)
+  //   return res;
+  // }
 
   logout() {
     localStorage.removeItem("jwt")
@@ -170,20 +152,22 @@ class App extends Component {
       currentView: 'HomePage',
     })
   }
-
-
   // END OF AUTH
 
-  // organize cities alphabetically
+
+  // organize cities alphabetically------POST MVP
+
+  // When page loads, fetch cities and set it to state
   componentDidMount() {
-    // this.isLoggedIn()
     fetchCities()
       .then(data => this.setState({ cities: data.cities }))
   }
+
   //renders to the homepage (for logo)
   renderToHomePage() {
     this.setState({
       currentView: 'HomePage'
+      
     })
   }
 
@@ -198,6 +182,7 @@ class App extends Component {
     })
   }
 
+  // handles the city view when a user chooses a city themselves
   pickCity(id) {
     oneCity(id)
       .then(data =>
@@ -228,7 +213,7 @@ class App extends Component {
     })
   }
 
-  // create a new post if user has logged in 
+  // create a new post on a specific city if user has logged in 
   newPost(post) {
     const jwt = localStorage.getItem("jwt")
     const init = {
@@ -247,11 +232,13 @@ class App extends Component {
       .catch(err => err.message)
   }
 
+  // sets state to the login page
   handleLogin() {
     this.setState({
       currentView: 'Login'
     })
   }
+
   // changes the view to the user profile when user clicks username
   handleUserProfile() {
     this.setState({
@@ -259,6 +246,7 @@ class App extends Component {
     })
   }
 
+  // renders the view to edit post when user wants to make a change
   editPostView(post) {
     this.setState({
       currentView: 'EditPost',
@@ -266,6 +254,7 @@ class App extends Component {
     })
   }
 
+  // handles the edited post and sets the view to the User page
   handleEditPost(post) {
     const jwt = localStorage.getItem("jwt")
     const init = {
@@ -284,6 +273,7 @@ class App extends Component {
       .catch(err => err.message)
   }
 
+  // handles the deleted post and sets the view to the User page
   handlePostDelete() {
     const jwt = localStorage.getItem("jwt")
     const init = {
@@ -301,7 +291,7 @@ class App extends Component {
       .catch(err => err.message)
   }
 
-  // render views
+  // render views:: Switch Statement
   determineWhichToRender() {
     const {
       currentView,

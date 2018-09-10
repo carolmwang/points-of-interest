@@ -15,6 +15,7 @@ class EditPost extends Component {
     this.handleDelete = this.handleDelete.bind(this)
   }
 
+  // handle change function
   handleChange(ev) {
     ev.preventDefault();
     const { name, value } = ev.target;
@@ -22,13 +23,14 @@ class EditPost extends Component {
       [name]: value,
     })
   }
-
+  // handles post delete
   handleDelete(ev) {
     ev.preventDefault();
     this.props.handlePostDelete();
 
   }
 
+  // on submit, send current state to the handle edit post
   onSubmit(ev) {
     ev.preventDefault();
     this.props.handleEditPost({ body: this.state })

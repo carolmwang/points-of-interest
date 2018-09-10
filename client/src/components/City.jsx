@@ -20,6 +20,7 @@ class City extends Component {
     }
     this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
+
   // get all ciy posts and points of interest when component mounts
   componentDidMount() {
     getAllCityPosts(this.props.id)
@@ -35,6 +36,7 @@ class City extends Component {
           poiCity: data.data.places[0] ? data.data.places[0].name_suffix : "Nothing to do here..",
         }))
   }
+  
   // fetches the point of interests by category
   handleCategoryClick(ev) {
     ev.preventDefault();

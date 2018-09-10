@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { fetchCities } from '../services/api';
 
+// Homepage view 
+// user can choose a city or button will randomly select one for you
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +14,13 @@ class HomePage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  // fetch all cities when component mounts
   componentDidMount() {
-    // this.isLoggedIn()
     fetchCities()
       .then(data => this.setState({ cities: data.cities }))
   }
 
+  // handles change
   handleChange(ev) {
     // const { name, value } = ev.target.value;
     this.setState({
@@ -25,9 +28,9 @@ class HomePage extends Component {
     })
   }
 
+  // handles submit when user chooses a city
   handleSubmit(ev) {
     ev.preventDefault();
-    console.log(this.props.pickCity(this.state.city))
     this.props.pickCity(this.state.city)
   }
 

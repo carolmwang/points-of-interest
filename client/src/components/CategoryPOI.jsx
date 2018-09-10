@@ -1,6 +1,7 @@
 import React from 'react';
 
 // Category component for points of interest based on category
+// Maps throught the points of interest for each category
 export default function CategoryPOI(props) {
   return (
     <div className="column is-three-quarters">

@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Header function
+// shows the user button and logout button if user is logged in
+// shows login button if user is not logged in
 export default function Header(props) {
   const { renderToHomePage } = props;
   return (
