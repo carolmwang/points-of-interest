@@ -6,6 +6,7 @@ export default function CategoryPOI(props) {
     <div className="column is-three-quarters">
       <div>
         {
+          props.poi.length !==0 ?
           props.poi.map(data => {
             const rating = Math.round(data.rating);
             const localRating = Math.round(data.rating_local);
@@ -14,12 +15,16 @@ export default function CategoryPOI(props) {
                 <h4>{data.name}</h4>
                 <img src={data.thumbnail_url} alt={`Sorry, no image of ${data.name}`}></img>
                 <p>{data.perex}</p>
-                <a href={data.url}>More Information</a>
+                <a href={data.url} className= "button is-link is-focused">More Information</a>
                 <p>Rating: {rating}/5</p>
                 <p>Local Rating: {localRating}/5</p>
               </div>
             )
           })
+          :
+          <div>
+            <h3>Sorry, there's no suggestions for {props.cityName}</h3>
+            </div>
         }
       </div>
 

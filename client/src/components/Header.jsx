@@ -13,8 +13,8 @@ export default function Header(props) {
 
             (
               <div>
-                <button onClick={props.handleUserProfile} className="button is-hovered">{props.userInfo.username}</button>
-                <button onClick={props.logout} className="button is-hovered">logout</button>
+                <button onClick={props.handleUserProfile} className="button is-warning category-button">{props.userInfo.username}</button>
+                <button onClick={props.logout} className="button is-warning category-button">logout</button>
               </div>
             )
             :

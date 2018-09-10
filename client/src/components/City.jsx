@@ -42,10 +42,17 @@ class City extends Component {
       category: ev.target.value
     })
     fetchPOI(this.state.city_id, this.state.category)
-      .then(data =>
+      .then(data => {
+        data.data.places ? 
         this.setState({
-          poi: data.data.places,
-        }))
+          poi: data.data.places
+        })
+        :
+        this.setState({
+          poi: []
+        })
+      })
+      .catch(err => console.log(err))
   }
 
 
@@ -57,8 +64,8 @@ class City extends Component {
           {
             this.state.categories.map(category => {
               return (
-                <a key={category} value={category} onClick={this.handleCategoryClick}
-                className="button is-medium is-outlined category-button">{category}</a>
+                <button key={category} value={category} onClick={this.handleCategoryClick}
+                className="button is-medium is-outlined category-button">{category}</button>
               )
             })
           }
@@ -70,7 +77,7 @@ class City extends Component {
             <h2 className="title is-1">{this.state.poiCity}</h2>
         }
         <div className="columns">
-        <CategoryPOI poi={this.state.poi} />
+        <CategoryPOI poi={this.state.poi} cityName={this.state.cityName}/>
         <Posts
           posts={this.state.posts}
           id={this.state.id}
