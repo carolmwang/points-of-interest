@@ -39,8 +39,23 @@ export function getOneUserPost(user_id, id) {
   .then(resp => resp.json())
 }
 
+export function getUserInfo(user_id) {
+  return fetch(`${BASE_URL}/users/${user_id}`)
+  .then(resp => resp.json())
+}
+
 // new post
 export function createPost(city_id, init) {
   return fetch(`${BASE_URL}/cities/${city_id}/posts`, init)
-  .then(resp => resp.json)
+  .then(resp => resp.json())
+}
+
+export function editPost(user_id, post_id, init) {
+  return fetch(`${BASE_URL}/users/${user_id}/posts/${post_id}`,init)
+  .then(resp => resp.json())
+}
+
+export function deletePost(user_id, post_id, init) {
+  return fetch(`${BASE_URL}/users/${user_id}/posts/${post_id}`, init)
+  .then(resp => resp.json())
 }

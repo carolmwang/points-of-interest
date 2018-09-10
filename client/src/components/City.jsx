@@ -8,6 +8,7 @@ class City extends Component {
     super(props);
     this.state = {
       city_id: this.props.city_id,
+      cityName: this.props.cityName,
       id: this.props.id,
       poi: [],
       poiCity: '',
@@ -25,14 +26,14 @@ class City extends Component {
       .then(data =>
         this.setState({
           poi: data.data.places,
-          poiCity: data.data.places[0] ? data.data.places[0].name_suffix : "Nothing to do here..",
+          poiCity: data.data.places[0] ? " " : "Nothing to do here..",
         }))
+
     getAllCityPosts(this.props.id)
-        .then(data => 
-          {console.log(data);
+      .then(data =>
         this.setState({
-          posts: data,
-        })})
+          posts: data.posts,
+        }))
   }
 
   handleCategoryClick(ev) {
@@ -62,16 +63,16 @@ class City extends Component {
           }
         </nav>
 
-        <h3>{this.state.poiCity}</h3>
+        <h3>{this.state.cityName}, USA</h3>
+        <h5>{this.state.poiCity}</h5>
         <CategoryPOI poi={this.state.poi} />
-        <Posts 
-        posts={this.state.posts} 
-        id={this.state.id} 
-        handlePostLogin={this.props.handlePostLogin}
-        isLoggedIn= {this.state.isLoggedIn}
-        newPost = {this.props.newPost}
-        user_id = {this.state.user_id}/>
-        
+        <Posts
+          posts={this.state.posts}
+          id={this.state.id}
+          isLoggedIn={this.state.isLoggedIn}
+          newPost={this.props.newPost}
+          user_id={this.state.user_id} />
+
 
       </div>
     )

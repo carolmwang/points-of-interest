@@ -4,20 +4,21 @@ import jwtDecode from 'jwt-decode';
 import {
   fetchCities,
   oneCity,
-  getAllUserPosts,
+  getUserInfo,
   getAllCityPosts,
-  getOneUserPost,
   fetchPOI,
   createPost,
+  editPost,
+  deletePost,
 }
-from './services/api';
+  from './services/api';
 
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
-// import NewPost from './components/NewPost';
 import City from './components/City';
-import NewPost from './components/NewPost';
+import User from './components/User';
+import EditPost from './components/EditPost';
 
 const BASE_URL = process.env.REACT_APP_API_URL
 
@@ -46,7 +47,11 @@ class App extends Component {
     this.state = {
       idCity: '',
       city: {},
+      cityName: '',
       cities: [],
+      userInfo: {},
+      userPosts: [],
+      postEdit: [],
       poi: [],
       user_id: '',
       username: '',
@@ -54,7 +59,6 @@ class App extends Component {
       password: '',
       isLoggedIn: false,
       isEdit: false,
-      // selectedJuiceId: null,
       isRegister: false,
       currentView: 'HomePage'
     };
@@ -71,6 +75,11 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this)
     this.newPost = this.newPost.bind(this)
     this.findUserId = this.findUserId.bind(this)
+    this.handleUserProfile = this.handleUserProfile.bind(this)
+    this.editPostView = this.editPostView.bind(this)
+    this.handleEditPost = this.handleEditPost.bind(this)
+    this.handlePostDelete = this.handlePostDelete.bind(this)
+    this.renderToHomePage = this.renderToHomePage.bind(this)
   }
 
   // AUTH Functions 
@@ -112,11 +121,15 @@ class App extends Component {
   findUserId() {
     const jwt = localStorage.getItem("jwt")
     const decoded = jwtDecode(jwt)
-    console.log(decoded);
-    this.setState({
-      user_id: decoded.sub 
-    })
+    getUserInfo(decoded.sub)
+      .then(data =>
+        this.setState({
+          user_id: data.id,
+          userInfo: data,
+        }))
   }
+
+
 
   login() {
     const url = `${BASE_URL}/user_token`;
@@ -136,8 +149,7 @@ class App extends Component {
         currentView: 'HomePage'
       }))
       .catch(err => console.log(err))
-    // fetch(`${BASE_URL}/users`)
-    // .then(resp => console.log(resp.json()))
+
   }
 
   isLoggedIn() {
@@ -145,6 +157,7 @@ class App extends Component {
     this.setState({
       isLoggedIn: res,
     })
+    this.userInfo(this.state.user_id)
     return res;
   }
 
@@ -181,22 +194,10 @@ class App extends Component {
       idCity: random_city.id,
       city: random_city,
       city_id: random_city.data_id,
+      cityName: random_city.name,
       currentView: 'City',
     })
   }
-
-  // findCity(id) {
-  //   oneCity(id)
-  
-  //   .then(data => {
-  //     this.setState({
-  //       idCity: data.id,
-  //       city: data,
-  //       city_id: data.data_id,
-  //       currentView: 'City',
-  //     })
-  //   })
-  // }
 
   pickCity(id) {
     oneCity(id)
@@ -228,6 +229,7 @@ class App extends Component {
     })
   }
 
+  // create a new post if user has logged in 
   newPost(post) {
     const jwt = localStorage.getItem("jwt")
     const init = {
@@ -237,80 +239,140 @@ class App extends Component {
       body: JSON.stringify(post)
     }
     createPost(this.state.idCity, init)
-      .then(
+      .then(data => {
         this.setState({
           currentView: 'City'
         })
+      }
       )
       .catch(err => err.message)
   }
 
-
-handleLogin() {
-  this.setState({
-    currentView: 'Login'
-  })
-}
-
-// render views
-determineWhichToRender() {
-  const { 
-    currentView, 
-    idCity, 
-    city, 
-    cities, 
-    city_id, 
-    user_id, 
-    isLoggedIn 
-  } = this.state;
-
-  switch (currentView) {
-    case 'HomePage':
-      return <HomePage
-        city={city}
-        cities={cities}
-        randomCity={this.randomCity}
-        pickCity={this.pickCity}
-        findCity={this.findCity}
-        login={this.handleLogin}
-      />
-
-    case 'City':
-      return <City
-        city_id={city_id}
-        id={idCity}
-        handleChange={this.handleChange}
-        handlePostLogin={this.handlePostLogin}
-        isLoggedIn={isLoggedIn}
-        newPost={this.newPost}
-        user_id={user_id}
-      />
-
-    case 'Login':
-      return <Login handleChange={this.handleChange}
-        login={this.login}
-        logout={this.logout}
-        email={this.state.email}
-        password={this.state.password}
-        isRegister={this.state.isRegister}
-        register={this.register}
-      />
+  handleLogin() {
+    this.setState({
+      currentView: 'Login'
+    })
+  }
+  // changes the view to the user profile when user clicks username
+  handleUserProfile() {
+    this.setState({
+      currentView: 'User'
+    })
   }
 
-}
+  editPostView(post) {
+    this.setState({
+      currentView: 'EditPost',
+      postEdit: post
+    })
+  }
 
-render() {
-  return (
-    <div>
-      <Header
-        renderToHomePage={this.renderToHomePage}
-        logout={this.logout}
-        showRegisterForm={this.showRegisterForm} 
-        handleLogin={this.handleLogin}/>
-      {this.determineWhichToRender()}
-    </div>
-  );
-}
+  handleEditPost(post) {
+    const jwt = localStorage.getItem("jwt")
+    const init = {
+      headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'PUT',
+      mode: 'cors',
+      body: JSON.stringify(post)
+    }
+    editPost(this.state.user_id, this.state.postEdit.id, init)
+      .then(data => {
+        this.setState({
+          currentView: 'User'
+        })
+      }
+      )
+      .catch(err => err.message)
+  }
+
+  handlePostDelete() {
+    const jwt = localStorage.getItem("jwt")
+    const init = {
+      headers: { "Authorization": `Bearer ${jwt}`, 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      method: 'DELETE',
+      mode: 'cors',
+    }
+    deletePost(this.state.user_id, this.state.postEdit.id, init)
+      .then(data => {
+        this.setState({
+          currentView: 'User'
+        })
+      }
+      )
+      .catch(err => err.message)
+  }
+
+  // render views
+  determineWhichToRender() {
+    const {
+      currentView,
+      idCity,
+      city,
+      cities,
+      city_id,
+      user_id,
+      isLoggedIn
+    } = this.state;
+
+    switch (currentView) {
+      case 'HomePage':
+        return <HomePage
+          city={city}
+          cities={cities}
+          randomCity={this.randomCity}
+          pickCity={this.pickCity}
+          findCity={this.findCity}
+          login={this.handleLogin}
+        />
+
+      case 'City':
+        return <City
+          city_id={city_id}
+          cityName={this.state.cityName}
+          id={idCity}
+          handleChange={this.handleChange}
+          isLoggedIn={isLoggedIn}
+          newPost={this.newPost}
+          user_id={user_id}
+        />
+
+      case 'Login':
+        return <Login handleChange={this.handleChange}
+          login={this.login}
+          logout={this.logout}
+          email={this.state.email}
+          password={this.state.password}
+          isRegister={this.state.isRegister}
+          register={this.register}
+        />
+      case 'User':
+        return <User user_id={user_id}
+          editPost={this.editPostView}
+          userPosts={this.state.userPosts} />
+      case 'EditPost':
+        return <EditPost
+          postEdit={this.state.postEdit}
+          handleEditPost={this.handleEditPost}
+          handlePostDelete={this.handlePostDelete} />
+    }
+
+  }
+
+  render() {
+    return (
+      <div>
+        <Header
+          renderToHomePage={this.renderToHomePage}
+          logout={this.logout}
+          isLoggedIn={this.state.isLoggedIn}
+          showRegisterForm={this.showRegisterForm}
+          handleLogin={this.handleLogin}
+          userInfo={this.state.userInfo}
+          handleUserProfile={this.handleUserProfile} />
+        {this.determineWhichToRender()}
+      </div>
+    );
+  }
 }
 
 

@@ -6,17 +6,22 @@ class PostsController < ApplicationController
   # GET /cities/:city_id/posts
   def index
     if (params[:user_id])
-      @posts = Post.where(user_id: params[:user_id])
-    else
+    @user = User.find(params[:user_id])
+    @posts = @user.posts
+    @city_id = @posts.pluck(:city_id)
+    @cities = City.find(@city_id)
+    render json: { user: @user, posts: @posts, city: @cities }
+  else
       @posts = Post.where(city_id: params[:city_id])
+      render json: { posts: @posts }, include: :user
     end
-    render json: @posts, include: :user
   end
 
   # GET /users/:user_id/posts/:id
   def show
     @post = Post.find(params[:id])
-    render json: @post
+    @city_id = City.find_by(id: @post.city_id)
+    render json: { post: @post, city: @city_id }
   end
 
   # POST /cities/:city_id/posts

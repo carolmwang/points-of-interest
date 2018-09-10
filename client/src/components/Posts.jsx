@@ -44,22 +44,23 @@ class Posts extends Component {
               this.props.isLoggedIn ?
                 <button>Submit</button>
                 :
-                <button onClick={this.props.handleLogin}>Login</button>
+                <h2>Please log in to make a post!</h2>
             }
           </form>
         </div>
         <div>
-          {
+          { this.props.posts ?
             this.props.posts.map(data => {
-              console.log(data);
-              const created = data.updated_at.toDateString();
-              console.log(created)
+             
               return (
                 <div key={data.id}>
                   <p>{data.content}</p>
+                  <p>{data.created_at}</p>
                 </div>
               )
             })
+            :
+            <h2>No Posts on this city</h2>
           }
         </div>
 
@@ -70,63 +71,4 @@ class Posts extends Component {
 }
 
 export default Posts;
-  // NewPost(props) {
-
-  //   // const handleSubmit = function(ev) {
-  //   //   ev.preventDefault();
-  //   //   props.submitNew({
-  //   //     content: 
-  //   //   })
-
-  //   // }
-  //   const post = props.isLoggedIn ?
-  //     (
-  //       <form>
-  //         <label></label>
-  //         <input
-  //           type="text"
-  //           value={props.owner}
-
-  //           placeholder="Share your experience of this point of interest!" />
-  //         <button>Submit</button>
-  //       </form>
-  //     )
-  //     : <Login
-  //       login={props.login}
-  //       logout={props.logout}
-  //       email={props.state.email}
-  //       password={props.state.password}
-  //       isRegister={props.state.isRegister}
-  //       register={props.register}
-  //     />
-  //   return (
-  //     <div>
-  //       {post}
-  //     </div>
-  //   )
-// }
-
-// export default NewPost;
-// // Category component for points of interest based on category
-// export default function Posts(props) {
-//   return (
-//     <div>
-//       <div>
-//         <NewPost cityid={props.cityid}/>
-//         {
-//           props.posts.map(data => {
-//             const created = data.updated_at.toDateString();
-//             console.log(created)
-//             return (
-//               <div key={data.id}>
-//                 <p>{data.content}</p>
-
-//               </div>
-//             )
-//           })
-//         }
-//       </div>
-
-//     </div>
-//   )
-// }
+  
