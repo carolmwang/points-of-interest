@@ -31,3 +31,13 @@
   width: 375px;
   height: 25px;
 }
+
+.header-space {
+  margin-bottom: 20px;
+}
+
+.homepage-view {
+  margin: auto;
+  position: relative;
+
+}

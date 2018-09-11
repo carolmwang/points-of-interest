@@ -81,6 +81,7 @@ class City extends Component {
         <div className="columns">
         <CategoryPOI poi={this.state.poi} cityName={this.state.cityName}/>
         <Posts
+          cityName={this.state.cityName}
           posts={this.state.posts}
           id={this.state.id}
           isLoggedIn={this.state.isLoggedIn}

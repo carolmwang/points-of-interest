@@ -22,9 +22,9 @@ class HomePage extends Component {
 
   // handles change
   handleChange(ev) {
-    // const { name, value } = ev.target.value;
+    const { name, value } = ev.target;
     this.setState({
-      city: ev.target.value,
+      [name]: value,
     })
   }
 
@@ -36,7 +36,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="columns">
+      <div className="columns homepage-view">
         <div className="column ">
           <form onSubmit={this.handleSubmit} className="select is-warning is-large">
             <select name="city" value={this.state.city} onChange={this.handleChange}>

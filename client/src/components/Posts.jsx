@@ -32,7 +32,7 @@ class Posts extends Component {
       <div className="column is-center citypage">
         <div>
           <form onSubmit={this.onSubmit}>
-            <label></label>
+            <label><strong>Write a review:</strong></label>
             <textarea
               type="text"
               name="content"
@@ -51,12 +51,14 @@ class Posts extends Component {
           </form>
         </div>
         <div>
+          <h3><strong>Reviews ({this.props.posts.length}): </strong></h3>
           { this.props.posts ?
             this.props.posts.map(data => {
              
               return (
                 <div key={data.id} className="posts">
                   <p>{data.content}</p>
+                  <p>{data.user.username}</p>
                   <p>{data.created_at}</p>
                 </div>
               )

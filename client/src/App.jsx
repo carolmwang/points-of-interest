@@ -16,6 +16,7 @@ import {
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
+import Register from './components/Register';
 import City from './components/City';
 import User from './components/User';
 import EditPost from './components/EditPost';
@@ -37,9 +38,12 @@ class App extends Component {
       postEdit: [],
       poi: [],
       user_id: '',
+      first_name: '',
+      last_name: '',
       username: '',
       email: '',
       password: '',
+      password_confirmation: '',
       isLoggedIn: false,
       isEdit: false,
       isRegister: false,
@@ -56,6 +60,7 @@ class App extends Component {
     this.poiCity = this.poiCity.bind(this)
     this.pickCity = this.pickCity.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
+    this.handleRegister = this.handleRegister.bind(this)
     this.newPost = this.newPost.bind(this)
     this.findUserId = this.findUserId.bind(this)
     this.handleUserProfile = this.handleUserProfile.bind(this)
@@ -70,12 +75,16 @@ class App extends Component {
   // https://medium.com/@nick.hartunian/knock-jwt-auth-for-rails-api-create-react-app-6765192e295a
   // JZ react-rails-token-auth repo
   cancel() {
-    this.setState({
-      name: '',
-      sugar: '',
-      isEdit: false,
-      selectedJuiceId: null,
-    })
+        this.setState({
+          first_name: '',
+          last_name: '',
+          username: '',
+          email: '',
+          password: '',
+          password_confirmation: '',
+          currentView: 'HomePage'
+        })
+
   }
 
   showRegisterForm() {
@@ -86,7 +95,16 @@ class App extends Component {
 
   register() {
     const url = `${BASE_URL}/users`
-    const body = { "user": { "email": this.state.email, "password": this.state.password } }
+    const body = {
+      "user": {
+        "first_name": this.state.first_name,
+        "last_name": this.state.last_name,
+        "username": this.state.username,
+        "email": this.state.email,
+        "password": this.state.password,
+        "password_confirmation": this.state.password_confirmation
+      }
+    }
     const init = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -95,9 +113,9 @@ class App extends Component {
     }
     fetch(url, init)
       .then(res => res.json())
-      .then(this.setState({
-        isRegister: false,
-      }))
+      .then(data => {
+        this.login()
+      })
       .catch(err => err.message)
   }
 
@@ -167,7 +185,7 @@ class App extends Component {
   renderToHomePage() {
     this.setState({
       currentView: 'HomePage'
-      
+
     })
   }
 
@@ -223,11 +241,11 @@ class App extends Component {
       body: JSON.stringify(post)
     }
     createPost(this.state.idCity, init)
-      .then(data => 
+      .then(data =>
         this.setState({
           currentView: 'User',
         })
-      
+
       )
       .catch(err => err.message)
   }
@@ -236,6 +254,12 @@ class App extends Component {
   handleLogin() {
     this.setState({
       currentView: 'Login'
+    })
+  }
+
+  handleRegister() {
+    this.setState({
+      currentView: 'Register'
     })
   }
 
@@ -313,26 +337,22 @@ class App extends Component {
           findCity={this.findCity}
           login={this.handleLogin}
         />
-
-      case 'City':
-        return <City
-          city_id={city_id}
-          cityName={this.state.cityName}
-          id={idCity}
-          handleChange={this.handleChange}
-          isLoggedIn={isLoggedIn}
-          newPost={this.newPost}
-          user_id={user_id}
-        />
-
       case 'Login':
         return <Login handleChange={this.handleChange}
           login={this.login}
-          logout={this.logout}
           email={this.state.email}
           password={this.state.password}
-          isRegister={this.state.isRegister}
+        />
+      case 'Register':
+        return <Register handleChange={this.handleChange}
+          first_name={this.state.first_name}
+          last_name={this.state.last_name}
+          username={this.state.username}
+          email={this.state.email}
+          password={this.state.password}
+          password_confirmation={this.state.password_confirmation}
           register={this.register}
+          cancel={this.cancel}
         />
       case 'User':
         return <User user_id={user_id}
@@ -343,6 +363,16 @@ class App extends Component {
           postEdit={this.state.postEdit}
           handleEditPost={this.handleEditPost}
           handlePostDelete={this.handlePostDelete} />
+      case 'City':
+        return <City
+          city_id={city_id}
+          cityName={this.state.cityName}
+          id={idCity}
+          handleChange={this.handleChange}
+          isLoggedIn={isLoggedIn}
+          newPost={this.newPost}
+          user_id={user_id}
+        />
     }
 
   }
@@ -354,8 +384,8 @@ class App extends Component {
           renderToHomePage={this.renderToHomePage}
           logout={this.logout}
           isLoggedIn={this.state.isLoggedIn}
-          showRegisterForm={this.showRegisterForm}
           handleLogin={this.handleLogin}
+          handleRegister={this.handleRegister}
           userInfo={this.state.userInfo}
           handleUserProfile={this.handleUserProfile} />
         {this.determineWhichToRender()}

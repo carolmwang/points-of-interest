@@ -26,7 +26,7 @@ export default function Login(props) {
         />
       </form>
       <br />
-      <a onClick={props.register} className="button is-warning">Register</a> | <a onClick={props.login} className="button is-warning">Login</a>
+      <a onClick={props.login} className="button is-warning">Login</a>
     </div>
     </div>
   )
