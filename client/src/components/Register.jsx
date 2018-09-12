@@ -71,8 +71,7 @@ export default function Register(props) {
         <br /><br />
         </div>
       </form>
-      <a onClick={props.register} className="button is-warning">Register</a> | <a onClick={props.cancel} className="button is-warning">Cancel</a>
-
+        <a onClick={props.register} className="button is-warning">Register</a> | <a onClick={props.cancel} className="button is-warning">Cancel</a>
     </div>
     </div>
   )

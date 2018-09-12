@@ -37,7 +37,13 @@
 }
 
 .homepage-view {
-  margin: auto;
-  position: relative;
+  margin: 50px;
+}
 
+.header:hover {
+  cursor: pointer;
+}
+
+.navstyle {
+  display: inline;
 }

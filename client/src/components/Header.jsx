@@ -7,10 +7,10 @@ export default function Header(props) {
   const { renderToHomePage } = props;
   return (
     <div className="header-space">
-    <section class="hero">
-      <div class="hero-body">
+    <section className="hero">
+      <div className="hero-body">
        
-    <p onClick={renderToHomePage} className="title is-1 is-center">POINTS of INTEREST</p>
+    <p onClick={renderToHomePage} className="title is-1 is-center header">POINTS of INTEREST</p>
 
         
       </div>
@@ -19,23 +19,24 @@ export default function Header(props) {
     <nav className="navbar is-warning">
         <div className="navbar-end">
           <div className="navbar-menu">
+            <a onClick={renderToHomePage} className="navbar-item">Home</a>
             {
               props.isLoggedIn ?
                 (
                   <div className="navbar-item has-dropdown is-hoverable is-warning">
+                    
                     <a className="navbar-link">{props.userInfo.username}</a>
 
                     <div className="navbar-dropdown is-right is-boxed is-active">
                       <a onClick={props.handleUserProfile} className="navbar-item">Profile</a>
-                      <a onClick={props.handleUserProfile} className="navbar-item">Edit Profile</a>
                       <a onClick={props.logout} className="navbar-item">Logout</a>
                     </div>
                   </div>
                 )
                 :
                 <div>
-                  <button onClick={props.handleLogin} className="button is-warning is-hovered category-button">Login</button>
-                  <button onClick={props.handleRegister} className="button is-warning is-hovered category-button">Register</button>
+                  <button onClick={props.handleLogin} className="button is-warning is-hoverable category-button">Login</button>
+                  <button onClick={props.handleRegister} className="button is-warning is-hoverable category-button">Register</button>
                 </div>
             }
 

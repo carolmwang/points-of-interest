@@ -53,8 +53,9 @@ class App extends Component {
     // this.isLoggedIn = this.isLoggedIn.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.cancel = this.cancel.bind(this)
-    this.showRegisterForm = this.showRegisterForm.bind(this)
+    // this.showRegisterForm = this.showRegisterForm.bind(this)
     this.register = this.register.bind(this)
+    // this.editForm = this.editForm.bind(this)
     this.login = this.login.bind(this)
     this.randomCity = this.randomCity.bind(this)
     this.poiCity = this.poiCity.bind(this)
@@ -87,12 +88,6 @@ class App extends Component {
 
   }
 
-  showRegisterForm() {
-    this.setState({
-      isRegister: true,
-    })
-  }
-
   register() {
     const url = `${BASE_URL}/users`
     const body = {
@@ -118,7 +113,8 @@ class App extends Component {
       })
       .catch(err => err.message)
   }
-
+  
+  // Find user by id with jwtDecode
   findUserId() {
     const jwt = localStorage.getItem("jwt")
     const decoded = jwtDecode(jwt)
@@ -131,8 +127,6 @@ class App extends Component {
           currentView: 'HomePage'
         }))
   }
-
-
 
   login() {
     const url = `${BASE_URL}/user_token`;
@@ -150,15 +144,6 @@ class App extends Component {
       .catch(err => console.log(err))
 
   }
-
-  // isLoggedIn() {
-  //   const res = !!(localStorage.getItem("jwt"));
-  //   this.setState({
-  //     isLoggedIn: res,
-  //   })
-  //   this.userInfo(this.state.user_id)
-  //   return res;
-  // }
 
   logout() {
     localStorage.removeItem("jwt")
@@ -185,7 +170,6 @@ class App extends Component {
   renderToHomePage() {
     this.setState({
       currentView: 'HomePage'
-
     })
   }
 
@@ -262,7 +246,7 @@ class App extends Component {
       currentView: 'Register'
     })
   }
-
+  
   // changes the view to the user profile when user clicks username
   handleUserProfile() {
     this.setState({
@@ -353,6 +337,7 @@ class App extends Component {
           password_confirmation={this.state.password_confirmation}
           register={this.register}
           cancel={this.cancel}
+          isLoggedIn = {this.state.isLoggedIn}
         />
       case 'User':
         return <User user_id={user_id}

@@ -36,8 +36,8 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="columns homepage-view">
-        <div className="column ">
+      <div className="columns">
+        <div className="column homepage-view">
           <form onSubmit={this.handleSubmit} className="select is-warning is-large">
             <select name="city" value={this.state.city} onChange={this.handleChange}>
               <option value="disabled">If you know what you're looking for..</option>
@@ -52,12 +52,11 @@ class HomePage extends Component {
             <input type="submit" value="Submit" />
           </form>
           </div>
-            <div className="column">
+            <div className="column homepage-view">
               <a onClick={
                 (ev) => {
                   ev.preventDefault();
                   const random_city = this.props.cities[Math.floor(Math.random() * this.props.cities.length)];
-                  console.log(random_city);
                   this.props.randomCity(random_city)
                 }} className="button is-large is-warning">Choose a city for me!</a>
             </div>
@@ -67,33 +66,3 @@ class HomePage extends Component {
   }
 }
 export default HomePage
-
-// export default function HomePage(props) {
-//   return (
-//     <div>
-//       <form onSubmit={
-//           (ev) => {
-//             ev.preventDefault();
-//             props.pickCity(ev.target.value)
-//           }
-//           }>
-//         <select name="city">
-//           {
-//             props.cities.map(city => {
-//               return (
-//                 <option key ={city.id} value="2723">{city.name}</option>
-//               )
-//             })
-//           }
-//         </select>
-//         <button>Submit</button>
-//       </form>
-//       <button onClick={
-//         (ev) => {
-//           ev.preventDefault();
-//           const random_city = props.cities[Math.floor(Math.random() * props.cities.length)];
-//           console.log(random_city);
-//           props.randomCity(random_city)}}>Where to next?</button>
-//     </div>
-//   )
-// }
