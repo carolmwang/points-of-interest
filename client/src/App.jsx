@@ -157,9 +157,6 @@ class App extends Component {
   }
   // END OF AUTH
 
-
-  // organize cities alphabetically------POST MVP
-
   // When page loads, fetch cities and set it to state
   componentDidMount() {
     fetchCities()
@@ -169,7 +166,10 @@ class App extends Component {
   //renders to the homepage (for logo)
   renderToHomePage() {
     this.setState({
-      currentView: 'HomePage'
+      currentView: 'HomePage',
+      cityName: '',
+      city_id: '',
+      idCity: '',
     })
   }
 
@@ -350,6 +350,7 @@ class App extends Component {
           handlePostDelete={this.handlePostDelete} />
       case 'City':
         return <City
+          city={this.state.city}
           city_id={city_id}
           cityName={this.state.cityName}
           id={idCity}

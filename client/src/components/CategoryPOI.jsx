@@ -24,7 +24,7 @@ export default function CategoryPOI(props) {
           })
           :
           <div>
-            <h3>Sorry, there's no suggestions for {props.cityName}</h3>
+            <h3>Sorry, there's no suggestions for {props.city.name}</h3>
             </div>
         }
       </div>

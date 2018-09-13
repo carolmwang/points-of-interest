@@ -23,15 +23,17 @@ class User extends Component {
   render() {
     return (
       <div className="columns is-centered">
-      <div className="column is-half">
+          <div className="column is-half">
         {
           this.state.userPosts.map(post => {
             return (
-              <div className="posts">
-                <h4>{post.content}</h4>
-                <h5>{post.created_at}</h5>
-                <a onClick={() => this.props.editPost(post)} className="button is-warning is-small">Edit Post</a>
-              </div>
+                <div className="box posts">
+                  <h4>{post.content}</h4>
+                  <br />
+                  <h5 className="is-size-7">{Date(post.created_at).toString()}</h5>
+
+                  <a onClick={() => this.props.editPost(post)} className="button is-warning is-small">Edit Post</a>
+                </div>
             )
           })
         }

@@ -49,7 +49,8 @@ class HomePage extends Component {
                 })
               }
             </select>
-            <input type="submit" value="Submit" />
+            <br />
+            <button type="submit" className="button is-warning">Submit</button>
           </form>
           </div>
             <div className="column homepage-view">

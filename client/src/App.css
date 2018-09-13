@@ -3,6 +3,11 @@
   margin: 10px;
 }
 
+.has-bg-img {
+  background: url('./img/nyc-background.jpg') center center;
+  background-size: cover;
+}
+
 .category-button {
   margin: 5px
 }
@@ -42,6 +47,7 @@
 
 .header:hover {
   cursor: pointer;
+  color: #ffdd57;
 }
 
 .navstyle {

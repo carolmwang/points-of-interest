@@ -7,24 +7,20 @@ export default function Header(props) {
   const { renderToHomePage } = props;
   return (
     <div className="header-space">
-    <section className="hero">
-      <div className="hero-body">
-       
-    <p onClick={renderToHomePage} className="title is-1 is-center header">POINTS of INTEREST</p>
-
-        
-      </div>
-    </section>
-
-    <nav className="navbar is-warning">
+      <section className="hero is-medium has-bg-img">
+        <div className="hero-body">
+          <p onClick={renderToHomePage} className="title is-1 has-text-white-ter has-text-weight-bold is-center header">POINTS of INTEREST</p>
+        </div>
+      </section>
+      <nav className="navbar is-warning">
         <div className="navbar-end">
           <div className="navbar-menu">
             <a onClick={renderToHomePage} className="navbar-item">Home</a>
             {
               props.isLoggedIn ?
                 (
-                  <div className="navbar-item has-dropdown is-hoverable is-warning">
-                    
+                  <div className="navbar-item has-dropdown is-hoverable">
+
                     <a className="navbar-link">{props.userInfo.username}</a>
 
                     <div className="navbar-dropdown is-right is-boxed is-active">
@@ -34,15 +30,19 @@ export default function Header(props) {
                   </div>
                 )
                 :
-                <div>
-                  <button onClick={props.handleLogin} className="button is-warning is-hoverable category-button">Login</button>
-                  <button onClick={props.handleRegister} className="button is-warning is-hoverable category-button">Register</button>
+                <div className="navbar-item has-dropdown is-hoverable">
+
+                  <a className="navbar-link">Sign In</a>
+                  <div className="navbar-dropdown is-right is-boxed is-active">
+                    <a onClick={props.handleLogin} className="navbar-item">Login</a>
+                    <a onClick={props.handleRegister} className="navbar-item">Register</a>
+                  </div>
                 </div>
             }
 
           </div>
         </div>
-        </nav>
- </div>
+      </nav>
+    </div>
   )
 }

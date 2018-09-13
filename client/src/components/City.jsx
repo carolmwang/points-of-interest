@@ -7,6 +7,7 @@ class City extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      city: this.props.city,
       city_id: this.props.city_id,
       cityName: this.props.cityName,
       id: this.props.id,
@@ -79,7 +80,7 @@ class City extends Component {
             <h2 className="title is-1">{this.state.poiCity}</h2>
         }
         <div className="columns">
-        <CategoryPOI poi={this.state.poi} cityName={this.state.cityName}/>
+        <CategoryPOI poi={this.state.poi} city={this.state.city}/>
         <Posts
           cityName={this.state.cityName}
           posts={this.state.posts}

@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
     
   def index
-    render json: {cities: City.all}
+    render json: {cities: City.all.order(:name)}
   end
 
   def show
